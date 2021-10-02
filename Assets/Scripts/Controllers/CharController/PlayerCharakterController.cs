@@ -12,7 +12,7 @@ public class PlayerCharakterController : MonoBehaviour
     private Rigidbody ownRigidbody;
     [Range(-1.0f, 1.0f)]
     public float dirX = 0.0f; 
-    public Vector3 moveDir = new Vector3();
+    public Vector2 moveDir = new Vector2();
 
     [Header("Atributes"), SerializeField]    
     private DrivingAtributes atributes;
