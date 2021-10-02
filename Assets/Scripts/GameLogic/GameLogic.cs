@@ -14,4 +14,27 @@ public class GameLogic
     {
         
     }
+
+    public void CollectHuman ()
+    {
+        // Set ppl count ++
+    }
+
+    public void SaveHuman ()
+    {
+        // Set scorecount += ppl count
+        // Set ppl count to 0
+    }
+
+    public void SacrificeHuman ()
+    {
+        // Set time += amount of time * ppl count
+        // Set ppl count to 0
+    }
+
+    public void Update ()
+    {
+        // If(time =< 0) -> CallErrorScreen(scorecount)
+        //
+    }
 }
