@@ -8,23 +8,23 @@ public class LevelController : MonoBehaviour
     private CameraController camController;
     [SerializeField]
     private UIController uiController;
+    [SerializeField]
+    private SoundEventSystem soundChanel;
 
     private GameLogic gameLogic;
 
     private void Awake()
     {
-        gameLogic = new GameLogic();
+        gameLogic = new GameLogic(soundChanel);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void FixedUpdate()
     {
-        
+        gameLogic.UpdateGameLogic();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        //UpdateInputSystem
     }
 }

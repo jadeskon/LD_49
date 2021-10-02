@@ -29,6 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3083461973158523061}
+  - {fileID: 5353998092247124688}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camController: {fileID: 0}
   uiController: {fileID: 8151902313355102961}
+  soundController: {fileID: 3196163636843970541}
+  soundChanel: {fileID: 11400000, guid: d0632da369bc3934fbc2388ff851df59, type: 2}
 --- !u!1 &3078522214032232338
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,3 +92,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaf8b3274a87ba438c55bbfcc91ee60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7499193410258912491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5353998092247124688}
+  - component: {fileID: 3196163636843970541}
+  m_Layer: 0
+  m_Name: SoundController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5353998092247124688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7499193410258912491}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8305877826462497350}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3196163636843970541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7499193410258912491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4376efdb04f38439d06d3d9c2e89bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEvents: {fileID: 11400000, guid: d0632da369bc3934fbc2388ff851df59, type: 2}
+  soundBank: {fileID: 11400000, guid: d35a10f25fe2552448951f1bffd07863, type: 2}
