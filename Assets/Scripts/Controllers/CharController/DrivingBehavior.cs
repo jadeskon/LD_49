@@ -30,7 +30,7 @@ public class DrivingBehavior
 
     private void UpdateWheelTorque()
     {
-        wheels.ApplyTorqueOnWheel(wheels.frontLeftWheel, 300.0f);
-        wheels.ApplyTorqueOnWheel(wheels.frontRightWheel, 300.0f);
+        wheels.ApplyTorqueOnWheel(wheels.frontLeftWheel, atributes.maxTorque);
+        wheels.ApplyTorqueOnWheel(wheels.frontRightWheel, atributes.maxTorque);
     }
 }
