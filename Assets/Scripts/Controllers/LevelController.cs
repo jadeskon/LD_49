@@ -9,8 +9,6 @@ public class LevelController : MonoBehaviour
     [SerializeField]
     private UIController uiController;
     [SerializeField]
-    private SoundBank soundBank;
-    [SerializeField]
     private SoundEventSystem soundChanel;
 
     private GameLogic gameLogic;
