@@ -19,20 +19,29 @@ public class DrivingBehavior
     public void UpdateDrivingBehavior(Vector3 moveDir)
     {
         UpdateSteeringAngle(moveDir);
-        UpdateWheelTorque();
+        UpdateWheelTorque(moveDir);
     }
 
     private void UpdateSteeringAngle(Vector2 moveDir)
     {
-        Debug.Log(moveDir);
 
         wheels.frontLeftWheel.steerAngle = atributes.maxSteeringAngle * moveDir.x;
         wheels.frontRightWheel.steerAngle = atributes.maxSteeringAngle * moveDir.x;
     }
 
-    private void UpdateWheelTorque()
+    private void UpdateWheelTorque(Vector2 moveDir)
     {
-        wheels.ApplyTorqueOnWheel(wheels.frontLeftWheel, atributes.maxTorque);
-        wheels.ApplyTorqueOnWheel(wheels.frontRightWheel, atributes.maxTorque);
+        if (moveDir.y > 0)
+        {
+            Debug.Log(moveDir);
+            wheels.ApplyTorqueOnWheel(wheels.frontLeftWheel, atributes.maxTorque);
+            wheels.ApplyTorqueOnWheel(wheels.frontRightWheel, atributes.maxTorque);
+        }
+        else if (moveDir.y < 0)
+        {
+            wheels.ApplyTorqueOnWheel(wheels.frontLeftWheel, -atributes.maxTorque);
+            wheels.ApplyTorqueOnWheel(wheels.frontRightWheel, -atributes.maxTorque);
+        }
+        
     }
 }
