@@ -10,7 +10,8 @@ public class LevelController : MonoBehaviour
     private UIController uiController;
     [SerializeField]
     private SoundEventSystem soundChanel;
-
+    [SerializeField]
+    private InputController inputController;
     private GameLogic gameLogic;
 
     private void Awake()
