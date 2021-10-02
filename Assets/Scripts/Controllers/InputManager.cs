@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class InputManager : IInputActionCollection, IDisposable
+public class @InputManager : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public InputManager()
+    public @InputManager()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""InputManager"",
@@ -164,8 +164,8 @@ public class InputManager : IInputActionCollection, IDisposable
     private readonly InputAction m_main_Collect;
     public struct MainActions
     {
-        private InputManager m_Wrapper;
-        public MainActions(InputManager wrapper) { m_Wrapper = wrapper; }
+        private @InputManager m_Wrapper;
+        public MainActions(@InputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_main_Movement;
         public InputAction @Collect => m_Wrapper.m_main_Collect;
         public InputActionMap Get() { return m_Wrapper.m_main; }
