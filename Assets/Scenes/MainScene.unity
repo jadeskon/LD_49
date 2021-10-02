@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 487766571712444444, guid: 6623a6c05ce205d4e935aabeb67efafc, type: 3}
+      propertyPath: camController
+      value: 
+      objectReference: {fileID: 385206551}
+    - target: {fileID: 487766571712444444, guid: 6623a6c05ce205d4e935aabeb67efafc, type: 3}
+      propertyPath: fieldController
+      value: 
+      objectReference: {fileID: 9076570594217882645}
     - target: {fileID: 1580708082871257775, guid: 6623a6c05ce205d4e935aabeb67efafc, type: 3}
       propertyPath: m_Name
       value: LevelController
@@ -237,6 +245,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf431d885180ebf429f261c281c9a94b, type: 3}
+--- !u!114 &385206551 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8914574490249042904, guid: cf431d885180ebf429f261c281c9a94b, type: 3}
+  m_PrefabInstance: {fileID: 385206550}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5386c4ac85a7dd8499468bbea72be159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9076570594217882644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -294,3 +313,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc5a01c95659ded4ca0468f845306bd6, type: 3}
+--- !u!114 &9076570594217882645 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3728595219782763647, guid: dc5a01c95659ded4ca0468f845306bd6, type: 3}
+  m_PrefabInstance: {fileID: 9076570594217882644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a33a12357487b45937acfc05f3bb9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

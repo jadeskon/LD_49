@@ -12,6 +12,8 @@ public class LevelController : MonoBehaviour
     private SoundEventSystem soundChanel;
     [SerializeField]
     private InputController inputController;
+    [SerializeField]
+    private FieldController fieldController;
     private GameLogic gameLogic;
 
     private void Awake()
