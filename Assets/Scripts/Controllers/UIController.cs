@@ -23,7 +23,7 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        character = GameObject.Find("Main_Camera");
+        character = GameObject.Find("Main Camera");
         //rescuePlace = GameObject.Find("House");
         vulcanPlace = GameObject.Find("Vulcan");
     }
@@ -58,8 +58,8 @@ public class UIController : MonoBehaviour
         textTimeComponent.text = "Time: " + 8;// Time.realtimeSinceStartup;
 
 
-        if (Input.GetKeyDown(KeyCode.W))
-            ActivateGameOverScreen(5, 8);
+        //if (Input.GetKeyDown(KeyCode.W))
+        //    ActivateGameOverScreen(5, 8);
     }
 
 
