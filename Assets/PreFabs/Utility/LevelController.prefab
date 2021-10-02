@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camController: {fileID: 0}
   uiController: {fileID: 8151902313355102961}
+  soundBank: {fileID: 11400000, guid: d35a10f25fe2552448951f1bffd07863, type: 2}
+  soundChanel: {fileID: 11400000, guid: d0632da369bc3934fbc2388ff851df59, type: 2}
 --- !u!1 &3078522214032232338
 GameObject:
   m_ObjectHideFlags: 0
