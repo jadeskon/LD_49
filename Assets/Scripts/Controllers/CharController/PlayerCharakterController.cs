@@ -24,17 +24,13 @@ public class PlayerCharakterController : MonoBehaviour
     private Vector3 grundHitpoint = new Vector3();
     private Vector3 grundHitNormal = new Vector3();
 
+    private Inputs currentInputs;
+
     private void Awake()
     {
         ownCollider = GetComponent<BoxCollider>();
         ownRigidbody = GetComponent<Rigidbody>();
         drivingBehavior = new DrivingBehavior(this, ownRigidbody, atributes);
-    }
-
-    //DEBUGGING !!!!!!!
-    private void FixedUpdate()
-    {
-        UpdatePlayerController();
     }
 
     private void Update()
@@ -46,11 +42,12 @@ public class PlayerCharakterController : MonoBehaviour
         grafiksController.UpdateGrafiks();
     }
 
-    public void UpdatePlayerController()
+    public void UpdatePlayerController(Inputs newInputs)
     {
+        currentInputs = newInputs;
         UpdateRaycasts();
         moveDir.x = dirX;
-        drivingBehavior.UpdateDrivingBehavior(moveDir);
+        drivingBehavior.UpdateDrivingBehavior(currentInputs.vector);
     }
 
     private void UpdateGrundRaycast()

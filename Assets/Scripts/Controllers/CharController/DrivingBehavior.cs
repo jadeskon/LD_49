@@ -22,8 +22,10 @@ public class DrivingBehavior
         UpdateWheelTorque();
     }
 
-    private void UpdateSteeringAngle(Vector3 moveDir)
+    private void UpdateSteeringAngle(Vector2 moveDir)
     {
+        Debug.Log(moveDir);
+
         wheels.frontLeftWheel.steerAngle = atributes.maxSteeringAngle * moveDir.x;
         wheels.frontRightWheel.steerAngle = atributes.maxSteeringAngle * moveDir.x;
     }
