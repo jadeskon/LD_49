@@ -5,4 +5,5 @@ using UnityEngine;
 public class FieldController : MonoBehaviour
 {
     public ParticleSystem vulcanParticleSystem;
+    public Transform playerSpawnPos;
 }

@@ -9,11 +9,13 @@ public class UIController : MonoBehaviour
     public GameObject pauseScreen;
     public GameObject ingameScreen;
     public GameObject vulcanPlace;
-    public GameObject rescuePoint;
+    public GameObject rescuePointDock;
+    public GameObject rescuePointAirfield;
     public GameObject person;
     public Text textScoreComponent;
     public Text textPassengerComponent;
     public Text textTimeComponent;
+    public Text textInfo;
     public Text textResults;
     public Image arrowVulcan;
     public Image arrowRescuePoint;
@@ -27,6 +29,12 @@ public class UIController : MonoBehaviour
     private int passengers = 0;
     private float time = 0;
 
+    private LevelController levelController;
+
+    public void SetLevelController(LevelController levelController)
+    {
+        this.levelController = levelController;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +56,21 @@ public class UIController : MonoBehaviour
         if (ingameScreen.activeSelf)
         {
             UpdateLandmarkIndicator(vulcanPlace, arrowVulcan);
-            UpdateLandmarkIndicator(rescuePoint, arrowRescuePoint);
+
+            float distanceDock = 0;
+            float distanceAirfield = 0;
+
+            if (rescuePointDock != null)
+                distanceDock = (currentCamera.transform.position - rescuePointDock.transform.position).magnitude;
+
+            if (rescuePointAirfield != null)
+                distanceAirfield = (currentCamera.transform.position - rescuePointAirfield.transform.position).magnitude;
+
+            if (distanceDock < distanceAirfield)
+                UpdateLandmarkIndicator(rescuePointDock, arrowRescuePoint);
+            else
+                UpdateLandmarkIndicator(rescuePointAirfield, arrowRescuePoint);
+
             UpdateLandmarkIndicator(person, arrowPerson);
         }
     }
@@ -107,6 +129,7 @@ Score: {this.score}";
             float degree = Vector3.SignedAngle(dir, targetDirection, Vector3.down);
 
             targetDirection.z = degree;
+    
             targetDirection.x = 0;
             targetDirection.y = 0;
 
@@ -120,6 +143,11 @@ Score: {this.score}";
         pauseScreen.SetActive(!pauseScreen.activeSelf);
     }
 
+    public void Info(string text)
+    {
+        textInfo.text = text;
+    }
+
     public void ExitButton()
     {
         Debug.Log("Quit");
@@ -129,6 +157,9 @@ Score: {this.score}";
     public void RestartButton()
     {
         Debug.Log("Restart");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        levelController.ResetGame();
+        ingameScreen.SetActive(true);
+        pauseScreen.SetActive(false);
+        gameOverScreen.SetActive(false);
     }
 }

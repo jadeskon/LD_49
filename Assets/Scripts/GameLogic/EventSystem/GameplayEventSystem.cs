@@ -31,4 +31,22 @@ public class GameplayEventSystem : ScriptableObject
             gameOverEvent(death);
         }
     }
+
+    public event Action<bool> sacrifizeZoneTriggerEvent;
+    public void SacrifizeZoneTrigger(bool sacrifizeZone)
+    {
+        if (sacrifizeZoneTriggerEvent != null)
+        {
+            sacrifizeZoneTriggerEvent(sacrifizeZone);
+        }
+    }
+
+    public event Action<bool> saveZoneTriggerEvent;
+    public void SaveZoneTrigger(bool saveZone)
+    {
+        if (saveZoneTriggerEvent != null)
+        {
+            saveZoneTriggerEvent(saveZone);
+        }
+    }
 }
