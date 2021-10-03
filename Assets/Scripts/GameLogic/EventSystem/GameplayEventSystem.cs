@@ -15,6 +15,15 @@ public class GameplayEventSystem : ScriptableObject
         }
     }
 
+    public event Action<HouseController> registerHomeEvent;
+    public void RegisterHome(HouseController homeToRegister)
+    {
+        if (registerHomeEvent != null)
+        {
+            registerHomeEvent(homeToRegister);
+        }
+    }
+
     public event Action gameOverEvent;
     public void GameOver()
     {
