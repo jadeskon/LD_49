@@ -50,6 +50,38 @@ MonoBehaviour:
   uiController: {fileID: 3112573236328275688}
   soundChanel: {fileID: 11400000, guid: d0632da369bc3934fbc2388ff851df59, type: 2}
   inputController: {fileID: 4171794293050509758}
+  fieldController: {fileID: 0}
+  humanPreFab: {fileID: 4292528991688808464, guid: b0fb589df10fa394d8886c6b4d5f7b2f, type: 3}
+  housePreFab: {fileID: 1230840888420565941, guid: 087094929c6e9fa49a204ef31f0bdd0c, type: 3}
+  eventSystem: {fileID: 11400000, guid: 9d902c7828b1a334986b8b803fe37660, type: 2}
+  debugingCar: {fileID: 0}
+--- !u!114 &1875419130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3112573236896515694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: 3710738434707379630, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 2064916234097673511, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: -1967631576421560919, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 8056856818456041789, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: 3279352641294131588, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: 3837173908680883260, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
 --- !u!1 &5163182207803332366
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +265,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 936413328621161716, guid: af1fbc59fb1a8f04db6f2dd27c2d4565, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: af1fbc59fb1a8f04db6f2dd27c2d4565, type: 3}
 --- !u!224 &3112573236328275695 stripped
 RectTransform:
@@ -251,3 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaf8b3274a87ba438c55bbfcc91ee60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3112573236896515694 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 936413328621161717, guid: af1fbc59fb1a8f04db6f2dd27c2d4565, type: 3}
+  m_PrefabInstance: {fileID: 2867906928833268379}
+  m_PrefabAsset: {fileID: 0}
