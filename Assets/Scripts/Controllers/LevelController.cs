@@ -30,9 +30,26 @@ public class LevelController : MonoBehaviour
         {
             gameLogic.SetCharacterController(debugingCar.GetComponent<PlayerCharakterController>());
         }
+        if (uiController != null)
+        {
+            uiController.SetLevelController(this);
+        }
     }
 
-    private void FixedUpdate()
+	public void Reset()
+	{
+        gameLogic.Reset();
+        if (debugingCar != null)
+        {
+            debugingCar.transform.position = new Vector3(485, 23.34f, 288);
+            debugingCar.transform.rotation = Quaternion.identity;
+			var rigidCar = debugingCar.GetComponent<Rigidbody>();
+			rigidCar.velocity = new Vector3(0, 0, 0);
+			rigidCar.angularVelocity = new Vector3(0, 0, 0);
+        }
+	}
+
+	private void FixedUpdate()
     {
         gameLogic.UpdateGameLogic();
     }

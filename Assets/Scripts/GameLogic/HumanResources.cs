@@ -9,18 +9,24 @@ public class HumanResources
     public List<GameObject> carPersons { get; private set; }
     
     private List<HouseController> houseControllerList;
-    private int countSavedPersons = 0;
-    private int countSacrificePersons = 0;
+    private int countSavedPersons;
+    private int countSacrificePersons;
 
     public HumanResources (GameplayEventSystem eventSystem)
     {
-        activePersons = new List<GameObject>();
-        carPersons = new List<GameObject>();
-
         eventSystem.registerHomeEvent += RegisterHome;
+        Reset();
     }
 
-    private void RegisterHome(HouseController houseController)
+	internal void Reset()
+	{
+        activePersons = new List<GameObject>();
+        carPersons = new List<GameObject>();
+        countSavedPersons = 0;
+        countSacrificePersons = 0;
+	}
+
+	private void RegisterHome(HouseController houseController)
     {
         houseControllerList.Add(houseController);
     }

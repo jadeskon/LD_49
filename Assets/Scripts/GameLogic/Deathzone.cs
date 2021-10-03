@@ -8,6 +8,6 @@ public class Deathzone : MonoBehaviour
 	{
         var player = collider.GetComponent<PlayerCharakterController>();
 		if (player != null)
-			eventSystem.GameOver(Reason);
+			eventSystem.GameOver(string.IsNullOrEmpty(Reason) ? "You drowned in the cold sea." : Reason);
 	}
 }

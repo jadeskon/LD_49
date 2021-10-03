@@ -39,7 +39,17 @@ public class GameLogic
         playState = new PlayState(this, eventSystem);
         this.eventSystem = eventSystem;
         gameOverState = new GameOverState(iniUiController, eventSystem);
+
+        Reset();
     }
+
+	internal void Reset()
+	{
+        playState.Reset();
+        score = 0;
+        time = 180;
+        bodyCount = 0;
+	}
 
 	public void UpdateGameLogic()
     {

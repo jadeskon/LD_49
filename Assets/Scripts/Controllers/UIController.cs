@@ -27,6 +27,12 @@ public class UIController : MonoBehaviour
     private int passengers = 0;
     private float time = 0;
 
+    private LevelController levelController;
+
+    public void SetLevelController(LevelController levelController)
+    {
+        this.levelController = levelController;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -107,6 +113,7 @@ Score: {this.score}";
             float degree = Vector3.SignedAngle(dir, targetDirection, Vector3.down);
 
             targetDirection.z = degree;
+    
             targetDirection.x = 0;
             targetDirection.y = 0;
 
@@ -129,6 +136,9 @@ Score: {this.score}";
     public void RestartButton()
     {
         Debug.Log("Restart");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        levelController.Reset();
+        ingameScreen.SetActive(true);
+        pauseScreen.SetActive(false);
+        gameOverScreen.SetActive(false);
     }
 }

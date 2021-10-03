@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,4 +18,9 @@ public class PlayState
     {
         return 0;
     }
+
+	internal void Reset()
+	{
+        hr.Reset();
+	}
 }
