@@ -38,7 +38,7 @@ public class CharGrafiksController : MonoBehaviour
                 {
                     GameObject pasengerReference = Instantiate(pasengerPrefab, pasengerSpawnPos);
                     pasengerReference.transform.position = new Vector3( pasengerReference.transform.position.x, 
-                                                                        displayedPasengers.Count * distenceBetwenePasengers + pasengerReference.transform.position.y, 
+                                                                        displayedPasengers.Count * distenceBetwenePasengers + pasengerSpawnPos.transform.position.y, 
                                                                         pasengerReference.transform.position.z);
                     displayedPasengers.Add(pasengerReference);
                 }

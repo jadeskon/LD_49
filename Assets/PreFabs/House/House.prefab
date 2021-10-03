@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personePrefab: {fileID: 4056727797935914985, guid: 5884b834094af3d43bd60951bee2a5a5, type: 3}
+  spawnPos: {fileID: 5932198475874364722}
 --- !u!1 &4571698177133876219
 GameObject:
   m_ObjectHideFlags: 0
