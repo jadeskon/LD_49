@@ -17,19 +17,33 @@ public class CameraController : MonoBehaviour
 
 
 
+        /*
+        Vector3 lookRotation = vulcan.transform.position - transform.position;
+
+        Quaternion look = Quaternion.LookRotation(lookRotation);
+
+        transform.rotation = look;
+
+        transform.localRotation = Quaternion.Euler(45, 0.0f, 0.0f);*/
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
+
+
+
         /*
-        Vector3 lookRotation = vulcan.transform.position - transform.position;
+        look.
 
-        Quaternion look = Quaternion.LookRotation(lookRotation);
+        Quaternion test = transform.rotation;
 
-        transform.rotation = look;*/
+        test.
+            */
 
-
+        //transform.localRotation = Quaternion.EulerAngles(-45, 0, 0);
     }
 }

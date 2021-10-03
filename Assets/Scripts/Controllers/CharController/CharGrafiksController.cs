@@ -7,18 +7,44 @@ public class CharGrafiksController : MonoBehaviour
     [SerializeField]
     private PlayerCharakterController owner;
     [SerializeField]
-    private GameObject charGrafiksGO;
+    private Transform pasengerSpawnPos;
     [SerializeField]
-    private float orientationSpeed = 10.0f;
+    private GameObject pasengerPrefab;
+    [SerializeField, Range(0, 10)]
+    private float distenceBetwenePasengers = 1.0f;
+    [SerializeField, Range(0, 10)]
+    private int testAmountOfPasengers = 0;
+    private List<GameObject> displayedPasengers = new List<GameObject>();
     public void UpdateGrafiks()
     {
-        //OrientToGrund();
+
     }
 
-    private void OrientToGrund()
+    public void SetAmountDisplayedPasengers(uint newAmountOfPasangers)
     {
-        Vector3 localForward = owner.transform.localRotation * Vector3.forward;
-        Quaternion orientationToGrund = Quaternion.LookRotation(localForward, owner.GetNormalOfGrund());
-        transform.rotation = Quaternion.Slerp(transform.rotation, orientationToGrund, Time.deltaTime * orientationSpeed);
+        if (newAmountOfPasangers < displayedPasengers.Count)
+        {
+            while (newAmountOfPasangers < displayedPasengers.Count)
+            {
+                Destroy(displayedPasengers[displayedPasengers.Count - 1]);
+            }
+        }
+        else if (newAmountOfPasangers > displayedPasengers.Count)
+        {
+            while (newAmountOfPasangers > displayedPasengers.Count)
+            {
+                GameObject pasengerReference = Instantiate(pasengerPrefab, pasengerSpawnPos);
+                pasengerReference.transform.position = new Vector3(pasengerReference.transform.position.x, displayedPasengers.Count * distenceBetwenePasengers, pasengerReference.transform.position.z);
+                displayedPasengers.Add(pasengerReference);
+            }
+        }
+    }
+
+    private void OnValidate()
+    {
+        if (testAmountOfPasengers != displayedPasengers.Count)
+        {
+            SetAmountDisplayedPasengers((uint)testAmountOfPasengers);
+        }
     }
 }

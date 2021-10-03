@@ -16,9 +16,16 @@ public class LevelController : MonoBehaviour
     private FieldController fieldController;
     private GameLogic gameLogic;
 
+    public GameObject debugingCar;
+
     private void Awake()
     {
-        gameLogic = new GameLogic(soundChanel);
+        gameLogic = new GameLogic(soundChanel, inputController);
+
+        if (debugingCar != null)
+        {
+            gameLogic.SetCharacterController(debugingCar.GetComponent<PlayerCharakterController>());
+        }
     }
 
     private void FixedUpdate()

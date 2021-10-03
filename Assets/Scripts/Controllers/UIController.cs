@@ -12,61 +12,95 @@ public class UIController : MonoBehaviour
     public Text textTimeComponent;
     public Text textResults;
     public Image arrowVulcan;
+    public Image arrowRescuePoint;
+    public Image arrowPerson;
     //public Image arrowRescuePlace;
 
     // Privates
-    private GameObject character;
-    //private GameObject rescuePlace;
+    private GameObject camera;
+    
     private GameObject vulcanPlace;
-    //private GameObject gameOverScreen;
+    private GameObject rescuePoint;
+    private GameObject person;
+
+    private int score = 0;
+    private int passengers = 0;
+    private float time;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        character = GameObject.Find("Main Camera");
-        //rescuePlace = GameObject.Find("House");
+        SetTimerDisplay(0);
+        SetScoreDisplay(0);
+        SetPassengersDisplay(0);
+
+        camera = GameObject.Find("Main Camera");
+        
         vulcanPlace = GameObject.Find("Vulcan");
+        rescuePoint = GameObject.Find("House");
+        person = GameObject.Find("Person");
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 toPosition = vulcanPlace.transform.position;
-        Vector3 fromPosition = character.transform.position;
+        UpdateLandmarkIndicator(vulcanPlace, arrowVulcan);
+        UpdateLandmarkIndicator(rescuePoint, arrowRescuePoint);
 
-        fromPosition.y = 0;
-        toPosition.y = 0;
-        //vulcanDirection.y = 0;
-
-        Vector3 dir = (toPosition - fromPosition).normalized;
-        
-
-        float angle = Vector3.Angle(fromPosition, toPosition);
-        arrowVulcan.transform.localEulerAngles = new Vector3(0, 0, angle);
-
-        /*Debug.Log(dir);
-        Debug.Log(angle);*/
-
-        /*
-        Vector3 rescuePlaceDirection = rescuePlace.transform.position - character.transform.position;
-        rescuePlaceDirection.y = 0;
-        rescuePlaceDirection.x = 180;
-        arrowRescuePlace.transform.rotation = Quaternion.Euler(rescuePlaceDirection);*/
-
-        textScoreComponent.text = "Score: " + 1;
-        textPassengerComponent.text = "Passengers: " + 2;
-        textTimeComponent.text = "Time: " + 8;// Time.realtimeSinceStartup;
-
-
-        //if (Input.GetKeyDown(KeyCode.W))
-        //    ActivateGameOverScreen(5, 8);
+        if(person != null)
+            UpdateLandmarkIndicator(person, arrowPerson);
     }
 
 
-    public void ActivateGameOverScreen(int score, int passengers)
+    public void ActivateGameOverScreen()
     {
-        textResults.text = "Score: " + score + "\nRescued Passengers: " + passengers;
-        gameOverScreen.SetActive(true);   
+        textResults.text = "Score: " + this.score + "\nRescued Passengers: " + this.passengers;
+        gameOverScreen.SetActive(true);
+    }
+
+    public void SetTimerDisplay(float time)
+    {
+        this.time = time;
+
+        int minutes = (int)(time / 60);
+        int seconds = ((int)time) % 60;
+
+        textTimeComponent.text = "Time: " + minutes.ToString("d2") + ":" + seconds.ToString("d2");
+    }
+
+    public void SetScoreDisplay(int score)
+    {
+        this.score = score;
+        textScoreComponent.text = "Score: " + score;
+    }
+
+    public void SetPassengersDisplay(int passengers)
+    {
+        this.passengers = passengers;
+        textPassengerComponent.text = "Passengers: " + passengers;
+    }
+
+    public void SetPassenger(GameObject person)
+    {
+        this.person = person;
+    }
+
+    private void UpdateLandmarkIndicator(GameObject targetObject, Image image)
+    {
+        Vector3 toPosition = targetObject.transform.position;
+        Vector3 fromPosition = camera.transform.position;
+
+        Vector3 targetDirection = (fromPosition - toPosition).normalized;
+        
+        float radian = Mathf.Atan2(-fromPosition.x, fromPosition.z);
+        float degree = radian * 180 / Mathf.PI;
+
+        targetDirection.z = degree + camera.transform.rotation.eulerAngles.y;
+        targetDirection.x = 0;
+        targetDirection.y = 0;
+
+        image.transform.localRotation = Quaternion.Euler(targetDirection);
     }
 
     public void ExitButton()
