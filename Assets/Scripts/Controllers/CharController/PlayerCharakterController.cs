@@ -29,6 +29,13 @@ public class PlayerCharakterController : MonoBehaviour
 
     private float currentResetCooldownTimer = 0.0f;
     private float resetCooldownTime = 2.0f;
+
+    [SerializeField]
+    private AudioSource engineSoundIdle;
+
+    [SerializeField]
+    private AudioSource engineSoundLoad;
+
     private void Awake()
     {
         ownCollider = GetComponent<BoxCollider>();
@@ -44,6 +51,15 @@ public class PlayerCharakterController : MonoBehaviour
         wheels.UpdateWheelTransforms(wheels.backLeftWheel, wheels.backLeftWheelTransform);
         wheels.UpdateWheelTransforms(wheels.backRightWheel, wheels.backRightWheelTransform);
         grafiksController.UpdateGrafiks();
+
+        float engineSpeed = ownRigidbody.velocity.magnitude;
+
+        engineSoundIdle.pitch = Mathf.Max(1,(engineSpeed / 10) % 3);
+        engineSoundLoad.pitch = ((engineSpeed / 4) % 2)/3 + 0.5f;
+
+        engineSoundIdle.volume = Mathf.Min(1,1 - (engineSpeed / 2));
+        engineSoundLoad.volume = Mathf.Min(1, engineSpeed / 2);
+
     }
 
     public void UpdatePlayerController(Inputs newInputs)

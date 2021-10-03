@@ -18,24 +18,37 @@ public class HumanResources
         Reset();
     }
 
-	internal void Reset()
-	{
+    internal void Reset()
+    {
+        houseControllerList = new List<HouseController>();
         activePersons = new List<GameObject>();
         carPersons = new List<GameObject>();
         countSavedPersons = 0;
         countSacrificePersons = 0;
-	}
+    }
 
 	private void RegisterHome(HouseController houseController)
     {
         houseControllerList.Add(houseController);
     }
 
-    public void SpawnPersons(int count, HouseController house)
+    public void SpawnPersons(int count)
     {
-        for (int i = 0; i < count; i++)
-        {
+        int i = 0;
 
+        foreach (HouseController controller in houseControllerList)
+        {
+            if(controller.IsHouseFree())
+            {
+                controller.SpawnPerson();
+
+                i++;
+
+                if(0 < count)
+                {
+                    break;
+                }
+            }
         }
     }
 

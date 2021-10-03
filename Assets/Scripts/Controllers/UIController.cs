@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     public Text textScoreComponent;
     public Text textPassengerComponent;
     public Text textTimeComponent;
+    public Text textInfo;
     public Text textResults;
     public Image arrowVulcan;
     public Image arrowRescuePoint;
@@ -125,6 +126,11 @@ Score: {this.score}";
     {
         ingameScreen.SetActive(!ingameScreen.activeSelf);
         pauseScreen.SetActive(!pauseScreen.activeSelf);
+    }
+
+    public void Info(string text)
+    {
+        textInfo.text = text;
     }
 
     public void ExitButton()
