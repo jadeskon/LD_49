@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   housePrefabs:
   - {fileID: 5272756163466254048, guid: 039808208ea370b4395cbbb2f87002fe, type: 3}
+  - {fileID: 5272756163466254048, guid: 039808208ea370b4395cbbb2f87002fe, type: 3}
+  - {fileID: 2080903878363163274, guid: c294b5605fb9add4aab18724e2457c7f, type: 3}
   houseSpawnPos: {fileID: 31451331503815831}
   housePlaceHolder: {fileID: 1902820782715748186}
   personePrefabList:
