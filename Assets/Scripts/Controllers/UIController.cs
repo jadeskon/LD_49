@@ -22,11 +22,7 @@ public class UIController : MonoBehaviour
 
 
     // Privates
-    private GameObject camera;
-    
-    /*private GameObject vulcanPlace;
-    private GameObject rescuePoint;
-    private GameObject person;*/
+    private Camera currentCamera;
 
     private int score = 0;
     private int passengers = 0;
@@ -44,11 +40,7 @@ public class UIController : MonoBehaviour
         SetScoreDisplay(0);
         SetPassengersDisplay(0);
 
-        camera = GameObject.Find("Main Camera");
-        
-        //vulcanPlace = GameObject.Find("Vulcan");
-        //rescuePoint = GameObject.Find("Vulcan");
-        //person = GameObject.Find("Person_test");
+        currentCamera = Camera.main;
     }
 
     // Update is called once per frame
@@ -58,8 +50,6 @@ public class UIController : MonoBehaviour
         {
             UpdateLandmarkIndicator(vulcanPlace, arrowVulcan);
             UpdateLandmarkIndicator(rescuePoint, arrowRescuePoint);
-
-            //if (person != null)
             UpdateLandmarkIndicator(person, arrowPerson);
         }
     }
@@ -103,67 +93,23 @@ public class UIController : MonoBehaviour
 
     private void UpdateLandmarkIndicator(GameObject targetObject, Image image)
     {
-        Vector3 dir = camera.transform.forward;
+        if (targetObject != null)
+        {
+            Vector3 dir = currentCamera.transform.forward;
 
+            Vector3 toPosition = targetObject.transform.position;
+            Vector3 fromPosition = currentCamera.transform.position;
 
-        Vector3 toPosition = targetObject.transform.position;
-        Vector3 fromPosition = camera.transform.position;
+            Vector3 targetDirection = (fromPosition - toPosition).normalized;
 
-        Vector3 targetDirection = (fromPosition - toPosition).normalized;
+            float degree = Vector3.SignedAngle(dir, targetDirection, Vector3.down);
 
+            targetDirection.z = degree;
+            targetDirection.x = 0;
+            targetDirection.y = 0;
 
-        float degree = Vector3.SignedAngle(dir, targetDirection, Vector3.down);
-        
-        //float radian = Mathf.Atan2(-fromPosition.x, fromPosition.z);
-
-        //float degree = radian * 180 / Mathf.PI;
-
-        targetDirection.z = degree;
-        targetDirection.x = 0;
-        targetDirection.y = 0;
-
-        image.transform.localRotation = Quaternion.Euler(targetDirection);
-
-
-
-
-
-
-
-
-
-        /*
-        Vector3 toPosition = targetObject.transform.position;
-        Vector3 fromPosition = camera.transform.position;
-
-        Vector3 targetDirection = (fromPosition - toPosition).normalized;
-
-        float radian = Mathf.Atan2(-fromPosition.x, fromPosition.z);
-
-        float degree = radian * 180 / Mathf.PI;
-
-        targetDirection.z = degree + camera.transform.rotation.eulerAngles.y;
-        targetDirection.x = 0;
-        targetDirection.y = 0;
-
-        image.transform.localRotation = Quaternion.Euler(targetDirection);*/
-    }
-
-    private void UpdateLandmarkIndicator2(GameObject targetObject, Image image)
-    {
-        Vector3 toPosition = targetObject.transform.position;
-        Vector3 fromPosition = camera.transform.position;
-
-        Vector3 targetDirection = (fromPosition - toPosition).normalized;
-
-        float radian = Mathf.Atan2(-fromPosition.x, fromPosition.z);
-        float degree = radian * 180 / Mathf.PI;
-
-        targetDirection.z = degree + camera.transform.rotation.eulerAngles.y;
-        targetDirection.x = 0;
-        targetDirection.y = 0;
-
-        image.transform.localRotation = Quaternion.Euler(targetDirection);
+            image.transform.localRotation = Quaternion.Euler(targetDirection);
+        }
     }
 
     public void SwitchPause()
