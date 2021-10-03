@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7968920626998336543}
-  - component: {fileID: 8230293278705136813}
-  - component: {fileID: 4301058960385018552}
   m_Layer: 0
   m_Name: House_0
   m_TagString: Untagged
@@ -26,39 +24,39 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5272756163466254048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8441407683616099234}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8230293278705136813
+--- !u!65 &2908615348880994473
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5272756163466254048}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7.394597, y: 5.0431185, z: 6.153635}
-  m_Center: {x: -1.67, y: 2.19, z: -0.88}
---- !u!65 &4301058960385018552
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5272756163466254048}
+  m_GameObject: {fileID: 9110279830418526488}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.780847, y: 1.0755813, z: 1.9951513}
   m_Center: {x: -0.77, y: 0.45, z: -4.49}
+--- !u!65 &7727085997154958725
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9110279830418526488}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.443171, y: 6.846478, z: 6.122575}
+  m_Center: {x: -1.6647885, y: 3.3286388, z: -0.86968136}
 --- !u!1001 &8263928213995891785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116,6 +114,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fa47a8ab6dfe5a468aec3a4a334b097, type: 3}
+--- !u!1 &9110279830418526488 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3fa47a8ab6dfe5a468aec3a4a334b097, type: 3}
+  m_PrefabInstance: {fileID: 8263928213995891785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8441407683616099234 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3fa47a8ab6dfe5a468aec3a4a334b097, type: 3}
