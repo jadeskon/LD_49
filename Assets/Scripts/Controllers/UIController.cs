@@ -60,7 +60,7 @@ public class UIController : MonoBehaviour
             UpdateLandmarkIndicator(rescuePoint, arrowRescuePoint);
 
             //if (person != null)
-            UpdateLandmarkIndicator2(person, arrowPerson);
+            UpdateLandmarkIndicator(person, arrowPerson);
         }
     }
 
@@ -103,6 +103,36 @@ public class UIController : MonoBehaviour
 
     private void UpdateLandmarkIndicator(GameObject targetObject, Image image)
     {
+        Vector3 dir = camera.transform.forward;
+
+
+        Vector3 toPosition = targetObject.transform.position;
+        Vector3 fromPosition = camera.transform.position;
+
+        Vector3 targetDirection = (fromPosition - toPosition).normalized;
+
+
+        float degree = Vector3.SignedAngle(dir, targetDirection, Vector3.down);
+        
+        //float radian = Mathf.Atan2(-fromPosition.x, fromPosition.z);
+
+        //float degree = radian * 180 / Mathf.PI;
+
+        targetDirection.z = degree;
+        targetDirection.x = 0;
+        targetDirection.y = 0;
+
+        image.transform.localRotation = Quaternion.Euler(targetDirection);
+
+
+
+
+
+
+
+
+
+        /*
         Vector3 toPosition = targetObject.transform.position;
         Vector3 fromPosition = camera.transform.position;
 
@@ -116,7 +146,7 @@ public class UIController : MonoBehaviour
         targetDirection.x = 0;
         targetDirection.y = 0;
 
-        image.transform.localRotation = Quaternion.Euler(targetDirection);
+        image.transform.localRotation = Quaternion.Euler(targetDirection);*/
     }
 
     private void UpdateLandmarkIndicator2(GameObject targetObject, Image image)
