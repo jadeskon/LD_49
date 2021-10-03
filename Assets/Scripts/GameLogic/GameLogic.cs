@@ -12,6 +12,7 @@ public class GameLogic
     private PlayState playState;
 	private GameplayEventSystem eventSystem;
 	private GameOverState gameOverState;
+    private VulcanController vulcanController;
 
     public int secPerBody = 10;
     public int scorePerBody = 5;
@@ -28,11 +29,12 @@ public class GameLogic
         end
     }
 
-    public GameLogic(SoundEventSystem iniSoundChanel, InputController iniInputController, UIController iniUiController, GameplayEventSystem eventSystem)
+    public GameLogic(SoundEventSystem iniSoundChanel, InputController iniInputController, UIController iniUiController, GameplayEventSystem eventSystem, VulcanController iniVulcanController)
     {
         inputController = iniInputController;
         soundChanel = iniSoundChanel;
         uiController = iniUiController;
+        vulcanController = iniVulcanController;
 
         playState = new PlayState(this);
         this.eventSystem = eventSystem;
