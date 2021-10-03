@@ -10,10 +10,8 @@ public class PlayerCharakterController : MonoBehaviour
     private WheelSetup wheels;
     private BoxCollider ownCollider;
     private Rigidbody ownRigidbody;
-    [Range(-1.0f, 1.0f)]
-    public float dirX = 0.0f; 
-    public Vector2 moveDir = new Vector2();
-
+    [SerializeField]
+    private Transform cameraTarget;
     [Header("Atributes"), SerializeField]    
     private DrivingAtributes atributes;
     [SerializeField]
@@ -28,6 +26,8 @@ public class PlayerCharakterController : MonoBehaviour
 
     private Inputs currentInputs;
 
+    private float currentResetCooldownTimer = 0.0f;
+    private float resetCooldownTime = 2.0f;
     private void Awake()
     {
         ownCollider = GetComponent<BoxCollider>();
@@ -48,8 +48,8 @@ public class PlayerCharakterController : MonoBehaviour
     {
         currentInputs = newInputs;
         UpdateRaycasts();
-        moveDir.x = dirX;
         drivingBehavior.UpdateDrivingBehavior(currentInputs.vector);
+        CarTurner(currentInputs.reset);
     }
 
     private void UpdateGrundRaycast()
@@ -74,6 +74,17 @@ public class PlayerCharakterController : MonoBehaviour
         UpdateGrundRaycast();
     }
 
+    private void CarTurner(bool carTurningInput)
+    {
+        currentResetCooldownTimer += Time.fixedDeltaTime;
+        if (carTurningInput && currentResetCooldownTimer - resetCooldownTime > 0)
+        {
+            currentResetCooldownTimer = 0;
+            ownRigidbody.MovePosition(transform.position + Vector3.up * 3);
+            ownRigidbody.MoveRotation(Quaternion.identity);
+        }
+    }
+
     //Getters
     public Vector3 GetNormalOfGrund()
     {
@@ -90,9 +101,14 @@ public class PlayerCharakterController : MonoBehaviour
         return wheels;
     }
     
-    public void SetPasengersDisplay(int anzPasengers)
+    public Vector3 GetCameraTarget()
     {
+        return cameraTarget.position;
+    }
 
+    public void SetPasengersDisplay(uint newAmountOfPasengers)
+    {
+        grafiksController.SetAmountDisplayedPasengers(newAmountOfPasengers);
     }
 
     //Unity Utility
