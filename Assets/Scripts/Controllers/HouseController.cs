@@ -22,6 +22,7 @@ public class HouseController : MonoBehaviour
     private void Awake()
     {
         collectBoxColliderTrigger = GetComponent<BoxCollider>();
+        eventChanel.RegisterHome(this);
     }
 
     private void Start()
