@@ -1,49 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    // Publics
-    private GameObject character;
-    private GameObject vulcan;
+    public GameObject character; // The car object
+    public GameObject vulcan; // The vulcan, or more generrall, the object thats always in view.
+    public float Offset; // Distance of the camera behind the car.
+    public float Height; // Dinstance of the camera above the car
 
-
-    // Start is called before the first frame update
-    void Start()
+    public void LateUpdate()
     {
-        character = GameObject.FindGameObjectWithTag("Character");
-        vulcan = GameObject.FindGameObjectWithTag("Vulcan");
-
-
-
-        /*
-        Vector3 lookRotation = vulcan.transform.position - transform.position;
-
-        Quaternion look = Quaternion.LookRotation(lookRotation);
-
-        transform.rotation = look;
-
-        transform.localRotation = Quaternion.Euler(45, 0.0f, 0.0f);*/
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-
-
-
-
-        /*
-        look.
-
-        Quaternion test = transform.rotation;
-
-        test.
-            */
-
-        //transform.localRotation = Quaternion.EulerAngles(-45, 0, 0);
+        var worldVulcanToCarVector = (character.transform.position - vulcan.transform.position).normalized;
+        var worldCarToCamera = worldVulcanToCarVector * Offset + Vector3.up * Height;
+        transform.position = character.transform.position + worldCarToCamera;
+        transform.LookAt(character.transform);
     }
 }

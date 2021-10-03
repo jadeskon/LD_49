@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.43991587, g: 0.4883811, b: 0.56858534, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8914574490249042904, guid: cf431d885180ebf429f261c281c9a94b, type: 3}
   m_PrefabInstance: {fileID: 385206550}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 818092358}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5386c4ac85a7dd8499468bbea72be159, type: 3}
@@ -282,11 +282,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2435249270283605162, guid: 6c847cf5373196c49864d878548a35c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.4590503
+      value: 21.8
       objectReference: {fileID: 0}
     - target: {fileID: 2435249270283605162, guid: 6c847cf5373196c49864d878548a35c0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.06
+      value: -26.2
       objectReference: {fileID: 0}
     - target: {fileID: 2435249270283605162, guid: 6c847cf5373196c49864d878548a35c0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -322,6 +322,64 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c847cf5373196c49864d878548a35c0, type: 3}
+--- !u!1 &818092358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 130805561270531640, guid: cf431d885180ebf429f261c281c9a94b, type: 3}
+  m_PrefabInstance: {fileID: 385206550}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &818092359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818092358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5386c4ac85a7dd8499468bbea72be159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 1787930726}
+  vulcan: {fileID: 1525876953}
+  Offset: 20
+  Height: 20
+--- !u!114 &818092360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818092358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+--- !u!1 &1525876953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6552351386649599666, guid: dc5a01c95659ded4ca0468f845306bd6, type: 3}
+  m_PrefabInstance: {fileID: 9076570594217882644}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1787930726 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2435249270283605166, guid: 6c847cf5373196c49864d878548a35c0, type: 3}
