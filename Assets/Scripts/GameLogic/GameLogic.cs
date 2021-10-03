@@ -36,15 +36,16 @@ public class GameLogic
         uiController = iniUiController;
         vulcanController = iniVulcanController;
 
-        playState = new PlayState(this);
+        playState = new PlayState(this, eventSystem);
         this.eventSystem = eventSystem;
         gameOverState = new GameOverState(iniUiController, eventSystem);
     }
-    public void UpdateGameLogic()
+
+	public void UpdateGameLogic()
     {
         Inputs input = inputController.getInput();
         charController.UpdatePlayerController(input);
-        if (true) //(m_lastActionTime < DateTime.Now.AddSeconds(-1))
+        if (m_lastActionTime <= DateTime.Now.AddMilliseconds(-200))
         {
             m_lastActionTime = DateTime.Now;
             CheckActions(input);
@@ -53,7 +54,7 @@ public class GameLogic
         time -= 1 * Time.deltaTime;
         if(time <= 0f)
         {
-            eventSystem.GameOver();
+            eventSystem.GameOver("The volcano erupts, covering the complete island with hot lava.");
         }
     }
 

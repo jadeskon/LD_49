@@ -23,13 +23,12 @@ public class GameplayEventSystem : ScriptableObject
             registerHomeEvent(homeToRegister);
         }
     }
-
-    public event Action gameOverEvent;
-    public void GameOver()
+    public event Action<string> gameOverEvent;
+    public void GameOver(string death)
     {
         if (gameOverEvent != null)
         {
-            gameOverEvent();
+            gameOverEvent(death);
         }
     }
 }
