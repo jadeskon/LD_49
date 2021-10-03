@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOverState : MonoBehaviour
+public class GameOverState
 {
-    // Start is called before the first frame update
-    void Start()
+    UIController uiController;
+	public static GameOverState Instance;
+
+	public GameOverState(UIController uiController)
+	{
+		this.uiController = uiController;
+		Instance = this;
+	}
+
+	public void EndGame ()
     {
-        
+        uiController.ActivateGameOverScreen();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public void OnTimeRunOut()
+	{
+		EndGame();
+	}
 }

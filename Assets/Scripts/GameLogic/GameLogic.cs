@@ -34,7 +34,7 @@ public class GameLogic
         uiController = iniUiController;
 
         playState = new PlayState(this);
-        gameOverState = new GameOverState();
+        gameOverState = new GameOverState(iniUiController);
     }
     public void UpdateGameLogic()
     {
@@ -49,7 +49,7 @@ public class GameLogic
         time -= 1 * Time.deltaTime;
         if(time <= 0f)
         {
-            EndGame();
+            gameOverState.OnTimeRunOut();
         }
     }
 
@@ -106,12 +106,6 @@ public class GameLogic
         uiController.SetPassengersDisplay(bodyCount);
         uiController.SetScoreDisplay(score);
         uiController.SetTimerDisplay(time);
-    }
-
-    public void EndGame ()
-    {
-        uiController.ActivateGameOverScreen();
-        //Game State End
     }
 
     public void SpawnRandomNpc (int count)
