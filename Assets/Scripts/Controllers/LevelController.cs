@@ -15,12 +15,6 @@ public class LevelController : MonoBehaviour
     [SerializeField]
     private FieldController fieldController;
     private GameLogic gameLogic;
-
-    [SerializeField]
-    private GameObject humanPreFab;
-    [SerializeField]
-    private GameObject housePreFab;
-
     [SerializeField]
     private GameplayEventSystem eventSystem;
 
