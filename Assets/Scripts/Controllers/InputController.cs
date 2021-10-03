@@ -58,7 +58,7 @@ public class InputController : MonoBehaviour
         inputs.vector = direction;
     }
 
-    public Inputs getInput()
+    public Inputs GetInput()
     {
         return inputs;
     }

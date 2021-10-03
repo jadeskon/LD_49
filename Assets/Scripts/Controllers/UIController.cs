@@ -157,7 +157,7 @@ Score: {this.score}";
     public void RestartButton()
     {
         Debug.Log("Restart");
-        levelController.Reset();
+        levelController.ResetGame();
         ingameScreen.SetActive(true);
         pauseScreen.SetActive(false);
         gameOverScreen.SetActive(false);

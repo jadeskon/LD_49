@@ -5,111 +5,57 @@ using UnityEngine;
 
 public class GameLogic 
 {
+    private LevelController owner;
+
     private SoundEventSystem soundChanel;
-    private PlayerCharakterController charController;
     private InputController inputController;
     private UIController uiController;
-    private PlayState playState;
-	private GameplayEventSystem eventSystem;
-	private GameOverState gameOverState;
     private VulcanController vulcanController;
+	private GameplayEventSystem gameEventChanel;
 
-    public int secPerBody = 10;
-    public int scorePerBody = 5;
+    private PlayState playState;
+	private GameOverState gameOverState;
 
-    private DateTime m_lastActionTime = DateTime.Now;
 
-    private int score = 0;
-    private float time = 180f;
-    private int bodyCount = 0;
-    private enum GameState
+
+    public GameLogic(LevelController levelController)
     {
-        run,
-        pause,
-        end
+        owner = levelController;
+
+        soundChanel = owner.GetSoundChanel();
+        gameEventChanel = owner.GetGameEventChanel();
+        inputController = owner.GetInputController();
+        uiController = owner.GetUIController();
+        vulcanController = owner.GetVulcanController();
+
+        playState = new PlayState(this);
+        gameOverState = new GameOverState(uiController, gameEventChanel);
     }
 
-    public GameLogic(SoundEventSystem iniSoundChanel, InputController iniInputController, UIController iniUiController, GameplayEventSystem eventSystem, VulcanController iniVulcanController)
-    {
-        inputController = iniInputController;
-        soundChanel = iniSoundChanel;
-        uiController = iniUiController;
-        vulcanController = iniVulcanController;
-
-        playState = new PlayState(this, eventSystem);
-        this.eventSystem = eventSystem;
-        gameOverState = new GameOverState(iniUiController, eventSystem);
-
-        Reset();
-    }
-
-	internal void Reset()
+	internal void ResetGameLogic()
 	{
-        playState.Reset();
-        score = 0;
-        time = 180;
-        bodyCount = 0;
+        playState.ResetState();
 	}
 
 	public void UpdateGameLogic()
     {
-        Inputs input = inputController.getInput();
-        charController.UpdatePlayerController(input);
-        if (m_lastActionTime <= DateTime.Now.AddMilliseconds(-200))
+        if (playState.IsStateAktive())
         {
-            m_lastActionTime = DateTime.Now;
-            CheckActions(input);
+            playState.UpdatePlaystate();
         }
-        UpdateUi();
-        time -= 1 * Time.deltaTime;
-        if(time <= 0f)
+        else
         {
-            eventSystem.GameOver("The volcano erupts, covering the complete island with hot lava.");
+            gameOverState.UpdateGameOverState();
         }
-    }
 
-    public void CheckActions (Inputs input)
-    {
-        if (input.collect)
-        {
-            //Collider Abfrage:
-            CollectHuman();
-            //SaveHuman();
-            //SacrificeHuman();
-        }
-        if (input.menu)
-        {
-            CallMenu();
-        }
+        UpdateUi();
     }
 
     public void SetCharacterController(PlayerCharakterController newCharController)
     {
-        charController = newCharController;
+        playState.SetCharacterController(newCharController);
     }
-
-    public void CollectHuman ()
-    {
-        bodyCount++;
-    }
-
-    public void SaveHuman ()
-    {
-        if(bodyCount > 0)
-        {
-            bodyCount--;
-            score += scorePerBody;
-        }
-    }
-
-    public void SacrificeHuman ()
-    {
-        if(bodyCount > 0)
-        {
-            bodyCount--;
-            time += secPerBody;
-        }
-    }
+          
 
     public void CallMenu ()
     {
@@ -118,17 +64,32 @@ public class GameLogic
 
     public void UpdateUi ()
     {
-        uiController.SetPassengersDisplay(bodyCount);
-        uiController.SetScoreDisplay(score);
-        uiController.SetTimerDisplay(time);
+        uiController.SetPassengersDisplay(playState.GetAmountOfPasangers());
+        uiController.SetScoreDisplay(playState.GetScore());
+        uiController.SetTimerDisplay(playState.GetCountDownTime());
     }
 
-    public void SpawnRandomNpc (int count)
+    //Getters
+    public SoundEventSystem GetSoundChanel()
     {
-        for(int i = 0; i < count; i++)
-        {
-            //Spawn NPC at random House
-        }
+        return soundChanel;
     }
+    public GameplayEventSystem GetGameEventChanel()
+    {
+        return gameEventChanel;
+    }
+    public InputController GetInputController()
+    {
+        return inputController;
+    }
+    public UIController GetUIController()
+    {
+        return uiController;
+    }
+    public VulcanController GetVulcanController()
+    {
+        return vulcanController;
+    }
+    
 
 }

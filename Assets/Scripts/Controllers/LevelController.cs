@@ -14,16 +14,17 @@ public class LevelController : MonoBehaviour
     private InputController inputController;
     [SerializeField]
     private FieldController fieldController;
-    private GameLogic gameLogic;
     [SerializeField]
-    private GameplayEventSystem eventSystem;
+    private GameplayEventSystem gameEventChanel;
+
     private VulcanController vulcanController;
+    private GameLogic gameLogic;
 
     public GameObject debugingCar;
 
     private void Awake()
     {
-        gameLogic = new GameLogic(soundChanel, inputController, uiController, eventSystem, vulcanController);
+        gameLogic = new GameLogic(this);
         vulcanController = new VulcanController(fieldController.vulcanParticleSystem);
 
         if (debugingCar != null)
@@ -36,9 +37,10 @@ public class LevelController : MonoBehaviour
         }
     }
 
-	public void Reset()
+	public void ResetGame()
 	{
-        gameLogic.Reset();
+        gameLogic.ResetGameLogic();
+
         if (debugingCar != null)
         {
             debugingCar.transform.position = new Vector3(485, 23.34f, 288);
@@ -53,9 +55,25 @@ public class LevelController : MonoBehaviour
     {
         gameLogic.UpdateGameLogic();
     }
-
-    void Update()
+    //Getters
+    public SoundEventSystem GetSoundChanel()
     {
-        //UpdateInputSystem
+        return soundChanel;
+    }
+    public GameplayEventSystem GetGameEventChanel()
+    {
+        return gameEventChanel;
+    }
+    public InputController GetInputController()
+    {
+        return inputController;
+    }
+    public UIController GetUIController()
+    {
+        return uiController;
+    }
+    public VulcanController GetVulcanController()
+    {
+        return vulcanController;
     }
 }
