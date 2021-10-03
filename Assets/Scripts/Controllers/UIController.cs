@@ -9,7 +9,8 @@ public class UIController : MonoBehaviour
     public GameObject pauseScreen;
     public GameObject ingameScreen;
     public GameObject vulcanPlace;
-    public GameObject rescuePoint;
+    public GameObject rescuePointDock;
+    public GameObject rescuePointAirfield;
     public GameObject person;
     public Text textScoreComponent;
     public Text textPassengerComponent;
@@ -55,7 +56,21 @@ public class UIController : MonoBehaviour
         if (ingameScreen.activeSelf)
         {
             UpdateLandmarkIndicator(vulcanPlace, arrowVulcan);
-            UpdateLandmarkIndicator(rescuePoint, arrowRescuePoint);
+
+            float distanceDock = 0;
+            float distanceAirfield = 0;
+
+            if (rescuePointDock != null)
+                distanceDock = (currentCamera.transform.position - rescuePointDock.transform.position).magnitude;
+
+            if (rescuePointAirfield != null)
+                distanceAirfield = (currentCamera.transform.position - rescuePointAirfield.transform.position).magnitude;
+
+            if (distanceDock < distanceAirfield)
+                UpdateLandmarkIndicator(rescuePointDock, arrowRescuePoint);
+            else
+                UpdateLandmarkIndicator(rescuePointAirfield, arrowRescuePoint);
+
             UpdateLandmarkIndicator(person, arrowPerson);
         }
     }
