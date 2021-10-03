@@ -45,7 +45,7 @@ public class GameLogic
     {
         Inputs input = inputController.getInput();
         charController.UpdatePlayerController(input);
-        if (true) //(m_lastActionTime < DateTime.Now.AddSeconds(-1))
+        if (m_lastActionTime <= DateTime.Now.AddMilliseconds(-200))
         {
             m_lastActionTime = DateTime.Now;
             CheckActions(input);
