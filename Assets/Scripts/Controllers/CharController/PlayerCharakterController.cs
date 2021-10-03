@@ -33,6 +33,7 @@ public class PlayerCharakterController : MonoBehaviour
         ownCollider = GetComponent<BoxCollider>();
         ownRigidbody = GetComponent<Rigidbody>();
         drivingBehavior = new DrivingBehavior(this, ownRigidbody, atributes);
+        ownRigidbody.centerOfMass = new Vector3(0,-0.5f,0);
     }
 
     private void Update()
