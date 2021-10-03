@@ -19,8 +19,8 @@ public class GameOverState
 		eventSystem.gameOverEvent -= EndGame;
 	}
 
-	public void EndGame ()
+	public void EndGame (string reason)
     {
-        uiController.ActivateGameOverScreen();
+        uiController.ActivateGameOverScreen(reason);
     }
 }

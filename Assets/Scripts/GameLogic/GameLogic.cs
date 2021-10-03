@@ -38,7 +38,8 @@ public class GameLogic
         this.eventSystem = eventSystem;
         gameOverState = new GameOverState(iniUiController, eventSystem);
     }
-    public void UpdateGameLogic()
+
+	public void UpdateGameLogic()
     {
         Inputs input = inputController.getInput();
         charController.UpdatePlayerController(input);
@@ -51,7 +52,7 @@ public class GameLogic
         time -= 1 * Time.deltaTime;
         if(time <= 0f)
         {
-            eventSystem.GameOver();
+            eventSystem.GameOver("The volcano erupts, covering the complete island with hot lava.");
         }
     }
 
