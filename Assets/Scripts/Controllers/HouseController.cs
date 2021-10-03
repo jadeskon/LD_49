@@ -11,7 +11,7 @@ public class HouseController : MonoBehaviour
     [SerializeField]
     private GameObject housePlaceHolder;
     [SerializeField]
-    private GameObject personePrefab;
+    private List<GameObject> personePrefabList = new List<GameObject>();
     private GameObject personInstace;
     [SerializeField]
     private Transform spawnPos;
@@ -22,6 +22,7 @@ public class HouseController : MonoBehaviour
     private void Awake()
     {
         collectBoxColliderTrigger = GetComponent<BoxCollider>();
+        eventChanel.RegisterHome(this);
     }
 
     private void Start()
@@ -34,7 +35,7 @@ public class HouseController : MonoBehaviour
     {
         if (IsHouseFree())
         {
-            personInstace = Instantiate(personePrefab, spawnPos);
+            personInstace = Instantiate(personePrefabList[Random.Range(0, personePrefabList.Count)], spawnPos);
         }
     }
 

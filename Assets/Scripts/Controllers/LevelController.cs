@@ -15,20 +15,16 @@ public class LevelController : MonoBehaviour
     [SerializeField]
     private FieldController fieldController;
     private GameLogic gameLogic;
-
-    [SerializeField]
-    private GameObject humanPreFab;
-    [SerializeField]
-    private GameObject housePreFab;
-
     [SerializeField]
     private GameplayEventSystem eventSystem;
+    private VulcanController vulcanController;
 
     public GameObject debugingCar;
 
     private void Awake()
     {
-        gameLogic = new GameLogic(soundChanel, inputController, uiController, eventSystem);
+        gameLogic = new GameLogic(soundChanel, inputController, uiController, eventSystem, vulcanController);
+        vulcanController = new VulcanController(fieldController.vulcanParticleSystem);
 
         if (debugingCar != null)
         {
