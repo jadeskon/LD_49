@@ -438,6 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a33a12357487b45937acfc05f3bb9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vulcanParticleSystem: {fileID: 7439010557479967372}
 --- !u!1 &9076570595243954987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2844,6 +2845,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42321350d62c72c448ba0733e7be3513, type: 3}
+--- !u!198 &7439010557479967372 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8621889054035110357, guid: 42321350d62c72c448ba0733e7be3513, type: 3}
+  m_PrefabInstance: {fileID: 1196751172483822425}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2214896759235075779 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1019874034335149466, guid: 42321350d62c72c448ba0733e7be3513, type: 3}
