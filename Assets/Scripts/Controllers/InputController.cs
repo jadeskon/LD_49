@@ -14,6 +14,7 @@ public class InputController : MonoBehaviour
         inputManager.main.Collect.performed += _ => Collect();
         inputManager.main.Collect.canceled += _ => CollectRelease();
         inputManager.main.Movement.performed += ctx => Move(ctx.ReadValue<Vector2>());
+        inputManager.main.Movement.canceled += ctx => Move(ctx.ReadValue<Vector2>());
     }
 
     private void OnEnable()
