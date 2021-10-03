@@ -11,8 +11,14 @@ public class InputController : MonoBehaviour
     {
         inputs = new Inputs();
         inputManager = new InputManager();
-        inputManager.main.Collect.performed += _ => Collect();
-        inputManager.main.Collect.canceled += _ => CollectRelease();
+        inputManager.main.Collect.performed += _ => Collect(true);
+        inputManager.main.Collect.canceled += _ => Collect(false);
+        inputManager.main.Reset.performed += _ => Reset(true);
+        inputManager.main.Reset.canceled += _ => Reset(false);
+        inputManager.main.Menu.performed += _ => Menu(true);
+        inputManager.main.Menu.canceled += _ => Menu(false);
+        inputManager.main.ActionQ.performed += _ => ActionQ(true);
+        inputManager.main.ActionQ.canceled += _ => ActionQ(false);
         inputManager.main.Movement.performed += ctx => Move(ctx.ReadValue<Vector2>());
         inputManager.main.Movement.canceled += ctx => Move(ctx.ReadValue<Vector2>());
     }
@@ -27,22 +33,29 @@ public class InputController : MonoBehaviour
         inputManager.Disable();
     }
 
-    private void Collect()
+    private void Collect(bool bol)
     {
-        inputs.collect = true;
-        Debug.Log(inputs.collect);
+        inputs.collect = bol;
     }
 
-    private void CollectRelease()
+    private void Reset(bool bol)
     {
-        inputs.collect = false;
-        Debug.Log(inputs.collect);
+        inputs.reset = bol;
+    }
+
+    private void Menu(bool bol)
+    {
+        inputs.menu = bol;
+    }
+
+    private void ActionQ(bool bol)
+    {
+        inputs.actionQ = bol;
     }
 
     private void Move(Vector2 direction)
     {
         inputs.vector = direction;
-        Debug.Log(inputs.vector);
     }
 
     public Inputs getInput()
@@ -55,4 +68,7 @@ public struct Inputs
 {
     public Vector2 vector { get; set; }
     public bool collect { get; set; }
+    public bool reset { get; set; }
+    public bool menu { get; set; }
+    public bool actionQ { get; set; }
 }
