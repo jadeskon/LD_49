@@ -20,7 +20,7 @@ public class LevelController : MonoBehaviour
 
     private void Awake()
     {
-        gameLogic = new GameLogic(soundChanel, inputController);
+        gameLogic = new GameLogic(soundChanel, inputController, uiController);
 
         if (debugingCar != null)
         {

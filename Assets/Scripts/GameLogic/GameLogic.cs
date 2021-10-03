@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,18 +8,60 @@ public class GameLogic
     private SoundEventSystem soundChanel;
     private PlayerCharakterController charController;
     private InputController inputController;
+    private UIController uiController;
 
-    public GameLogic(SoundEventSystem iniSoundChanel, InputController iniInputController)
+    public int secPerBody = 10;
+    public int scorePerBody = 5;
+
+    private DateTime m_lastActionTime = DateTime.Now;
+
+    private int score = 0;
+    private float time = 180f;
+    private int bodyCount = 0;
+    private enum GameState
+    {
+        run,
+        pause,
+        end
+    }
+
+    public GameLogic(SoundEventSystem iniSoundChanel, InputController iniInputController, UIController iniUiController)
     {
         inputController = iniInputController;
         soundChanel = iniSoundChanel;
+        uiController = iniUiController;
     }
     public void UpdateGameLogic()
     {
-        charController.UpdatePlayerController(inputController.getInput());
+        Inputs input = inputController.getInput();
+        charController.UpdatePlayerController(input);
+        if (true) //(m_lastActionTime < DateTime.Now.AddSeconds(-1))
+        {
+            m_lastActionTime = DateTime.Now;
+            CheckActions(input);
+        }
+        UpdateUi();
+        time -= 1 * Time.deltaTime;
+        if(time <= 0f)
+        {
+            EndGame();
+        }
     }
 
-
+    public void CheckActions (Inputs input)
+    {
+        if (input.collect)
+        {
+            //Collider Abfrage:
+            CollectHuman();
+            //SaveHuman();
+            //SacrificeHuman();
+        }
+        if (input.menu)
+        {
+            CallMenu();
+        }
+    }
 
     public void SetCharacterController(PlayerCharakterController newCharController)
     {
@@ -27,24 +70,51 @@ public class GameLogic
 
     public void CollectHuman ()
     {
-        // Set ppl count ++
+        bodyCount++;
     }
 
     public void SaveHuman ()
     {
-        // Set scorecount += ppl count
-        // Set ppl count to 0
+        if(bodyCount > 0)
+        {
+            bodyCount--;
+            score += scorePerBody;
+        }
     }
 
     public void SacrificeHuman ()
     {
-        // Set time += amount of time * ppl count
-        // Set ppl count to 0
+        if(bodyCount > 0)
+        {
+            bodyCount--;
+            time += secPerBody;
+        }
     }
 
-    public void Update ()
+    public void CallMenu ()
     {
-        // If(time =< 0) -> CallErrorScreen(scorecount)
-        //
+        uiController.SwitchPause();
     }
+
+    public void UpdateUi ()
+    {
+        uiController.SetPassengersDisplay(bodyCount);
+        uiController.SetScoreDisplay(score);
+        uiController.SetTimerDisplay(time);
+    }
+
+    public void EndGame ()
+    {
+        uiController.ActivateGameOverScreen();
+        //Game State End
+    }
+
+    public void SpawnRandomNpc (int count)
+    {
+        for(int i = 0; i < count; i++)
+        {
+            //Spawn NPC at random House
+        }
+    }
+
 }
