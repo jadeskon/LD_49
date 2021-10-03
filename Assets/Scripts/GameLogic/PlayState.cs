@@ -11,6 +11,13 @@ public class PlayState
     {
         hr = new HumanResources(eventSystem);
         this.eventSystem = eventSystem;
+
+        hr.SpawnPersons(5);
+    }
+
+    public void Update()
+    {
+        
     }
 
     public int GetScore()

@@ -16,6 +16,7 @@ public class HumanResources
     {
         activePersons = new List<GameObject>();
         carPersons = new List<GameObject>();
+        houseControllerList = new List<HouseController>();
 
         eventSystem.registerHomeEvent += RegisterHome;
     }
@@ -25,11 +26,23 @@ public class HumanResources
         houseControllerList.Add(houseController);
     }
 
-    public void SpawnPersons(int count, HouseController house)
+    public void SpawnPersons(int count)
     {
-        for (int i = 0; i < count; i++)
-        {
+        int i = 0;
 
+        foreach (HouseController controller in houseControllerList)
+        {
+            if(controller.IsHouseFree())
+            {
+                controller.SpawnPerson();
+
+                i++;
+
+                if(0 < count)
+                {
+                    break;
+                }
+            }
         }
     }
 
