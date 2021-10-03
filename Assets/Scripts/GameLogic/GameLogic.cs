@@ -32,7 +32,7 @@ public class GameLogic
         gameOverState = new GameOverState(uiController, gameEventChanel);
     }
 
-	internal void ResetGameLogic()
+	public void ResetGameLogic()
 	{
         playState.ResetState();
 	}
@@ -54,8 +54,7 @@ public class GameLogic
     public void SetCharacterController(PlayerCharakterController newCharController)
     {
         playState.SetCharacterController(newCharController);
-    }
-          
+    } 
 
     public void CallMenu ()
     {
@@ -90,6 +89,21 @@ public class GameLogic
     {
         return vulcanController;
     }
-    
+
+    public GameObject GetPlayerCarPrefab()
+    {
+        return owner.GetPlayerCarPrefab();
+    }
+
+    public Transform GetPlayerSpawnPos()
+    {
+        return owner.GetPlayerSpawnPos();
+    }
+
+    //Setters
+    public void SetCameraTargte(GameObject newTarget)
+    {
+        owner.SetCameraTarget(newTarget);
+    }
 
 }

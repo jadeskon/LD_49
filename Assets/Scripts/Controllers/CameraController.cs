@@ -38,13 +38,21 @@ public class CameraController : MonoBehaviour
 	}
     public void LateUpdate()
     {
-        var characterSpeed = Vector3.Scale(character.GetComponent<Rigidbody>().velocity, new Vector3(1, 0.1f, 1)).magnitude;
-        var averagedSpeed = averageSpeed.Push(characterSpeed);
-        var scale = 1 + Sigmoid((averagedSpeed - 10) * 0.3f);
+        if (character != null)
+        {
+            var characterSpeed = Vector3.Scale(character.GetComponent<Rigidbody>().velocity, new Vector3(1, 0.1f, 1)).magnitude;
+            var averagedSpeed = averageSpeed.Push(characterSpeed);
+            var scale = 1 + Sigmoid((averagedSpeed - 10) * 0.3f);
 
-        var worldVulcanToCarVector = (character.transform.position - vulcan.transform.position).normalized;
-        var worldCarToCamera = worldVulcanToCarVector * Offset + Vector3.up * Height;
-        transform.position = character.transform.position + scale * worldCarToCamera;
-        transform.LookAt(character.transform);
+            var worldVulcanToCarVector = (character.transform.position - vulcan.transform.position).normalized;
+            var worldCarToCamera = worldVulcanToCarVector * Offset + Vector3.up * Height;
+            transform.position = character.transform.position + scale * worldCarToCamera;
+            transform.LookAt(character.transform);
+        }        
+    }
+
+    public void SetCameraTarget(GameObject target)
+    {
+        character = target;
     }
 }

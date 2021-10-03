@@ -46,12 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77c0bd76bdbef04fb34ac0e27201ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camController: {fileID: 0}
-  uiController: {fileID: 3112573236328275688}
   soundChanel: {fileID: 11400000, guid: d0632da369bc3934fbc2388ff851df59, type: 2}
+  gameEventChanel: {fileID: 11400000, guid: 9d902c7828b1a334986b8b803fe37660, type: 2}
+  uiController: {fileID: 3112573236328275688}
   inputController: {fileID: 4171794293050509758}
   fieldController: {fileID: 0}
-  gameEventChanel: {fileID: 11400000, guid: 9d902c7828b1a334986b8b803fe37660, type: 2}
+  camController: {fileID: 0}
+  playerCarPrefab: {fileID: 2435249270283605166, guid: 6c847cf5373196c49864d878548a35c0, type: 3}
+  isDebugging: 0
   debugingCar: {fileID: 0}
 --- !u!114 &1875419130
 MonoBehaviour:

@@ -22,12 +22,13 @@ public class HouseController : MonoBehaviour
     private void Awake()
     {
         collectBoxColliderTrigger = GetComponent<BoxCollider>();
-        eventChanel.RegisterHome(this);
+        
     }
 
     private void Start()
     {
         housePlaceHolder.SetActive(false);
+        eventChanel.RegisterHome(this);
         Instantiate(housePrefabs[Random.Range(0, housePrefabs.Count)], houseSpawnPos);
     }
 
@@ -51,11 +52,17 @@ public class HouseController : MonoBehaviour
         }
     }
 
+    private void SavePerson()
+    {
+        eventChanel.PersonCollected(this);
+        Destroy(personInstace);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (!IsHouseFree())
+        if(!IsHouseFree())
         {
-            eventChanel.PersonCollected(this);
+            SavePerson();
         }
     }
 }

@@ -4,30 +4,41 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
-    [SerializeField]
-    private CameraController camController;
-    [SerializeField]
-    private UIController uiController;
+    [Header("Chanels")]
     [SerializeField]
     private SoundEventSystem soundChanel;
+    [SerializeField]
+    private GameplayEventSystem gameEventChanel;
+
+    [Header("Controller")]    
+    [SerializeField]
+    private UIController uiController;    
     [SerializeField]
     private InputController inputController;
     [SerializeField]
     private FieldController fieldController;
     [SerializeField]
-    private GameplayEventSystem gameEventChanel;
+    private CameraController camController;
+
+    [Header("GamePlay")]
+    [SerializeField]
+    private GameObject playerCarPrefab;
 
     private VulcanController vulcanController;
     private GameLogic gameLogic;
 
-    public GameObject debugingCar;
+    [Header("Debugging")]
+    [SerializeField]
+    private bool isDebugging = false;
+    [SerializeField]
+    private GameObject debugingCar;
 
     private void Awake()
     {
         gameLogic = new GameLogic(this);
         vulcanController = new VulcanController(fieldController.vulcanParticleSystem);
 
-        if (debugingCar != null)
+        if (isDebugging && debugingCar != null)
         {
             gameLogic.SetCharacterController(debugingCar.GetComponent<PlayerCharakterController>());
         }
@@ -37,11 +48,11 @@ public class LevelController : MonoBehaviour
         }
     }
 
-	public void ResetGame()
+    public void ResetGame()
 	{
         gameLogic.ResetGameLogic();
 
-        if (debugingCar != null)
+        if (isDebugging && debugingCar != null)
         {
             debugingCar.transform.position = new Vector3(485, 23.34f, 288);
             debugingCar.transform.rotation = Quaternion.identity;
@@ -76,4 +87,21 @@ public class LevelController : MonoBehaviour
     {
         return vulcanController;
     }
+
+    public GameObject GetPlayerCarPrefab()
+    {
+        return playerCarPrefab;
+    }
+
+    public Transform GetPlayerSpawnPos()
+    {
+        return fieldController.playerSpawnPos;
+    }
+
+    //Setters
+    public void SetCameraTarget(GameObject newTarget)
+    {
+        camController.SetCameraTarget(newTarget);
+    }
+
 }

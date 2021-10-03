@@ -6,4 +6,9 @@ public class FieldController : MonoBehaviour
 {
     public ParticleSystem vulcanParticleSystem;
     public Transform playerSpawnPos;
+
+    public Transform GetPlayerSpawnPos()
+    {
+        return playerSpawnPos;
+    }
 }

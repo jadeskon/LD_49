@@ -4,25 +4,44 @@ using UnityEngine;
 
 public class HumanResources 
 {
+    PlayState owner;
 
-    public List<GameObject> activePersons { get; private set; }
-    public List<GameObject> carPersons { get; private set; }
+    GameplayEventSystem gameEventChanel;
+
+    public List<HouseController> activePersons { get; private set; }
+    public int personsInCar { get; private set; }
     
     private List<HouseController> houseControllerList;
     private int countSavedPersons;
     private int countSacrificePersons;
 
-    public HumanResources (GameplayEventSystem eventSystem)
+    private uint personsInQuewe = 0;
+
+    public HumanResources (PlayState iniOwner)
     {
-        eventSystem.registerHomeEvent += RegisterHome;
+        owner = iniOwner;
+
+        gameEventChanel = owner.GetGameEventChanel();
+        gameEventChanel.registerHomeEvent += RegisterHome;
+        gameEventChanel.personCollectedEvent += PickUpPerson;
+
         Reset();
+    }
+
+    public void UpdateHR()
+    {
+        if (personsInQuewe > 0)
+        {
+            SpawnPersons(personsInQuewe);
+            personsInQuewe = 0;
+        }
     }
 
     internal void Reset()
     {
         houseControllerList = new List<HouseController>();
-        activePersons = new List<GameObject>();
-        carPersons = new List<GameObject>();
+        activePersons = new List<HouseController>();
+        personsInCar = 0;
         countSavedPersons = 0;
         countSacrificePersons = 0;
     }
@@ -32,32 +51,33 @@ public class HumanResources
         houseControllerList.Add(houseController);
     }
 
-    public void SpawnPersons(int count)
+    public void SpawnPersons(uint count)
     {
-        int i = 0;
-
-        foreach (HouseController controller in houseControllerList)
+        if (houseControllerList.Count > 0)
         {
-            if(controller.IsHouseFree())
+            uint personsPlaced = 0;
+            while (personsPlaced < count)
             {
-                controller.SpawnPerson();
-
-                i++;
-
-                if(0 < count)
+                HouseController controller = houseControllerList[Random.Range(0, houseControllerList.Count)];
+                if (controller.IsHouseFree())
                 {
-                    break;
+                    controller.SpawnPerson();
+                    personsPlaced++;
                 }
             }
         }
+        else
+        {
+            personsInQuewe = count;
+        }
     }
 
-    public GameObject GetClosestPerson(Vector3 fromPosition)
+    public HouseController GetClosestPerson(Vector3 fromPosition)
     {
-        GameObject nearestPerson = null;
+        HouseController nearestPerson = null;
         float nearstDistance = 0;
         
-        foreach (GameObject person in activePersons)
+        foreach (HouseController person in activePersons)
         {
             float distance = (person.transform.position - fromPosition).magnitude;
             
@@ -71,7 +91,7 @@ public class HumanResources
         return nearestPerson;
     }
 
-    public void RemoveActivePerson(GameObject person, bool saved)
+    public void RemoveActivePerson(HouseController person, bool saved)
     {
         activePersons.Remove(person);
         Object.Destroy(person);
@@ -84,29 +104,18 @@ public class HumanResources
 
     public void RemovePersonsOfCar ()
     {
-        foreach (GameObject person in carPersons)
-        {
-            Object.Destroy(person);
-        }
-
-        carPersons.Clear();
+        personsInCar = 0;
     }
 
-    public void PickUpPerson(GameObject person)
+    public void PickUpPerson(HouseController housOfPerson)
     {
-        carPersons.Add(person);
-
-        activePersons.Remove(person);
+        personsInCar++;
+        activePersons.Remove(housOfPerson);
     }
 
-    public List<GameObject> GetActivePersons()
+    public List<HouseController> GetActivePersons()
     {
         return activePersons;
-    }
-
-    public List<GameObject> GetCarPersons()
-    {
-        return carPersons;
     }
 
     public int GetCountOfActivePersons()
@@ -116,7 +125,7 @@ public class HumanResources
 
     public int GetCountOfCarPersons()
     {
-        return carPersons.Count;
+        return personsInCar;
     }
 
     public int GetCountOfSavedPersons()

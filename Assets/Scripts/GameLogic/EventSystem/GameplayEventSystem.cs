@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 [CreateAssetMenu(menuName = "Events/GamePlayEvents")]
 public class GameplayEventSystem : ScriptableObject
@@ -23,6 +23,7 @@ public class GameplayEventSystem : ScriptableObject
             registerHomeEvent(homeToRegister);
         }
     }
+
     public event Action<string> gameOverEvent;
     public void GameOver(string death)
     {

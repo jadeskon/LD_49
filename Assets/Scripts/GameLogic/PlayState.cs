@@ -13,17 +13,19 @@ public class PlayState
     private VulcanController vulcanController;
     private GameplayEventSystem gameEventChanel;
 
-    private PlayerCharakterController charController;    
+    private PlayerCharakterController charController;
+    private GameObject playerCarInstance;
     private HumanResources hr;
 
     private bool isStateAktive = false;
+    private bool isCarInSaveZone = false;
+    private bool isCarInSacrifizeZone = false;
 
     public int secPerBody = 10;
     public int scorePerBody = 5;
 
     private int score = 0;
     private float countDownTime = 180f;
-    private int pasangers = 0;
 
     public PlayState(GameLogic iniGameLogic)
     {
@@ -35,22 +37,58 @@ public class PlayState
         uiController = owner.GetUIController();
         vulcanController = owner.GetVulcanController();
 
-        hr = new HumanResources(owner.GetGameEventChanel());
+        gameEventChanel.saveZoneTriggerEvent += SaveZoneTrigger;
+        gameEventChanel.sacrifizeZoneTriggerEvent+= SacrificeZoneTrigger;
+
+        hr = new HumanResources(this);
 
         SetUpGame();
     }
 
-
     public void UpdatePlaystate()
     {
-        charController.UpdatePlayerController(inputController.GetInput());
+        hr.UpdateHR();
+
+        if (charController != null)
+        {
+            charController.UpdatePlayerController(inputController.GetInput());
+        }
+
+        if (inputController.GetInput().collect && isCarInSaveZone)
+        {
+            SaveHuman();
+        }
+        if (inputController.GetInput().collect && isCarInSacrifizeZone)
+        {
+            SacrificeHuman();
+        }
+
+        UpdateTimer();
+    }
+
+    private void UpdateTimer()
+    {
+        countDownTime -= Time.fixedDeltaTime;
     }
 
     private void SetUpGame()
     {
         isStateAktive = true;
 
-        hr.SpawnPersons(5);
+        SetUpPlayerController();
+
+        owner.SetCameraTargte(playerCarInstance);
+
+        hr.SpawnPersons(20);
+    }
+
+    private void SetUpPlayerController()
+    {
+        playerCarInstance = MonoBehaviour.Instantiate(  owner.GetPlayerCarPrefab(),
+                                                        owner.GetPlayerSpawnPos().position,
+                                                        Quaternion.identity);
+
+        charController = playerCarInstance.GetComponent<PlayerCharakterController>();
     }
 
 	internal void ResetState()
@@ -60,20 +98,29 @@ public class PlayState
 
     public void SaveHuman()
     {
-        if (pasangers > 0)
+        if (hr.GetCountOfCarPersons() > 0)
         {
-            pasangers--;
+            hr.RemovePersonsOfCar();
             score += scorePerBody;
         }
     }
 
     public void SacrificeHuman()
     {
-        if (pasangers > 0)
+        if (hr.GetCountOfCarPersons() > 0)
         {
-            pasangers--;
+            hr.RemovePersonsOfCar();
             countDownTime += secPerBody;
         }
+    }
+
+    private void SaveZoneTrigger(bool triggerState)
+    {
+        isCarInSaveZone = triggerState;
+    }
+    private void SacrificeZoneTrigger(bool triggerState)
+    {
+        isCarInSacrifizeZone = triggerState;
     }
 
     //Getters
@@ -89,12 +136,17 @@ public class PlayState
 
     public int GetAmountOfPasangers()
     {
-        return pasangers;
+        return hr.GetCountOfCarPersons();
     }
 
     public bool IsStateAktive()
     {
         return isStateAktive;
+    }
+
+    public GameplayEventSystem GetGameEventChanel()
+    {
+        return owner.GetGameEventChanel();
     }
 
     //Setters
