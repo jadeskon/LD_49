@@ -21,11 +21,14 @@ public class LevelController : MonoBehaviour
     [SerializeField]
     private GameObject housePreFab;
 
+    [SerializeField]
+    private GameplayEventSystem eventSystem;
+
     public GameObject debugingCar;
 
     private void Awake()
     {
-        gameLogic = new GameLogic(soundChanel, inputController, uiController);
+        gameLogic = new GameLogic(soundChanel, inputController, uiController, eventSystem);
 
         if (debugingCar != null)
         {

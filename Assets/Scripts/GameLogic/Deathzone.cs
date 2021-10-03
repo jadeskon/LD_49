@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class Deathzone : MonoBehaviour
 {
+	public GameplayEventSystem eventSystem;
 	void OnTriggerEnter(Collider collider)
 	{
         var player = collider.GetComponent<PlayerCharakterController>();
 		if (player != null)
 		{
-			GameOverState.Instance.EndGame();
+			eventSystem.GameOver();
 		}
 	}
 }

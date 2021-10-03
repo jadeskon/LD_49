@@ -14,4 +14,13 @@ public class GameplayEventSystem : ScriptableObject
             personCollectedEvent(homeOfPerson);
         }
     }
+
+    public event Action gameOverEvent;
+    public void GameOver()
+    {
+        if (gameOverEvent != null)
+        {
+            gameOverEvent();
+        }
+    }
 }

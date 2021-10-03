@@ -10,7 +10,8 @@ public class GameLogic
     private InputController inputController;
     private UIController uiController;
     private PlayState playState;
-    private GameOverState gameOverState;
+	private GameplayEventSystem eventSystem;
+	private GameOverState gameOverState;
 
     public int secPerBody = 10;
     public int scorePerBody = 5;
@@ -27,14 +28,15 @@ public class GameLogic
         end
     }
 
-    public GameLogic(SoundEventSystem iniSoundChanel, InputController iniInputController, UIController iniUiController)
+    public GameLogic(SoundEventSystem iniSoundChanel, InputController iniInputController, UIController iniUiController, GameplayEventSystem eventSystem)
     {
         inputController = iniInputController;
         soundChanel = iniSoundChanel;
         uiController = iniUiController;
 
         playState = new PlayState(this);
-        gameOverState = new GameOverState(iniUiController);
+        this.eventSystem = eventSystem;
+        gameOverState = new GameOverState(iniUiController, eventSystem);
     }
     public void UpdateGameLogic()
     {
@@ -49,7 +51,7 @@ public class GameLogic
         time -= 1 * Time.deltaTime;
         if(time <= 0f)
         {
-            gameOverState.OnTimeRunOut();
+            eventSystem.GameOver();
         }
     }
 

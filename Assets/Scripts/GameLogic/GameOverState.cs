@@ -5,21 +5,22 @@ using UnityEngine;
 public class GameOverState
 {
     UIController uiController;
-	public static GameOverState Instance;
+	GameplayEventSystem eventSystem;
 
-	public GameOverState(UIController uiController)
+	public GameOverState(UIController uiController, GameplayEventSystem eventSystem)
 	{
 		this.uiController = uiController;
-		Instance = this;
+		this.eventSystem = eventSystem;
+		eventSystem.gameOverEvent += EndGame;
+	}
+
+	~GameOverState()
+	{
+		eventSystem.gameOverEvent -= EndGame;
 	}
 
 	public void EndGame ()
     {
         uiController.ActivateGameOverScreen();
     }
-
-	public void OnTimeRunOut()
-	{
-		EndGame();
-	}
 }
