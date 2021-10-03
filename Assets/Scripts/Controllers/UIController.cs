@@ -12,12 +12,16 @@ public class UIController : MonoBehaviour
     public Text textTimeComponent;
     public Text textResults;
     public Image arrowVulcan;
+    public Image arrowRescuePoint;
+    public Image arrowPerson;
     //public Image arrowRescuePlace;
 
     // Privates
     private GameObject camera;
-    //private GameObject rescuePlace;
+    
     private GameObject vulcanPlace;
+    private GameObject rescuePoint;
+    private GameObject person;
 
     private int score = 0;
     private int passengers = 0;
@@ -29,17 +33,23 @@ public class UIController : MonoBehaviour
     {
         SetTimerDisplay(0);
         SetScoreDisplay(0);
-        SetPasengersDisplay(0);
+        SetPassengersDisplay(0);
 
         camera = GameObject.Find("Main Camera");
-        //rescuePlace = GameObject.Find("House");
+        
         vulcanPlace = GameObject.Find("Vulcan");
+        rescuePoint = GameObject.Find("House");
+        person = GameObject.Find("Person");
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateLandmarkIndicator(vulcanPlace, arrowVulcan);
+        UpdateLandmarkIndicator(rescuePoint, arrowRescuePoint);
+
+        if(person != null)
+            UpdateLandmarkIndicator(person, arrowPerson);
     }
 
 
@@ -65,13 +75,18 @@ public class UIController : MonoBehaviour
         textScoreComponent.text = "Score: " + score;
     }
 
-    public void SetPasengersDisplay(int passengers)
+    public void SetPassengersDisplay(int passengers)
     {
         this.passengers = passengers;
         textPassengerComponent.text = "Passengers: " + passengers;
     }
 
-    public void UpdateLandmarkIndicator(GameObject targetObject, Image image)
+    public void SetPassenger(GameObject person)
+    {
+        this.person = person;
+    }
+
+    private void UpdateLandmarkIndicator(GameObject targetObject, Image image)
     {
         Vector3 toPosition = targetObject.transform.position;
         Vector3 fromPosition = camera.transform.position;
