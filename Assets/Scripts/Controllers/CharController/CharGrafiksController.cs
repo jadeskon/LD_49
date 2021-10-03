@@ -22,22 +22,28 @@ public class CharGrafiksController : MonoBehaviour
 
     public void SetAmountDisplayedPasengers(uint newAmountOfPasangers)
     {
-        if (newAmountOfPasangers < displayedPasengers.Count)
+        if (Application.isPlaying)
         {
-            while (newAmountOfPasangers < displayedPasengers.Count)
+            if (newAmountOfPasangers < displayedPasengers.Count)
             {
-                Destroy(displayedPasengers[displayedPasengers.Count - 1]);
+                while (newAmountOfPasangers < displayedPasengers.Count)
+                {
+                    Destroy(displayedPasengers[displayedPasengers.Count - 1].gameObject);
+                    displayedPasengers.RemoveAt(displayedPasengers.Count - 1);
+                }
             }
-        }
-        else if (newAmountOfPasangers > displayedPasengers.Count)
-        {
-            while (newAmountOfPasangers > displayedPasengers.Count)
+            else if (newAmountOfPasangers > displayedPasengers.Count)
             {
-                GameObject pasengerReference = Instantiate(pasengerPrefab, pasengerSpawnPos);
-                pasengerReference.transform.position = new Vector3(pasengerReference.transform.position.x, displayedPasengers.Count * distenceBetwenePasengers, pasengerReference.transform.position.z);
-                displayedPasengers.Add(pasengerReference);
+                while (newAmountOfPasangers > displayedPasengers.Count)
+                {
+                    GameObject pasengerReference = Instantiate(pasengerPrefab, pasengerSpawnPos);
+                    pasengerReference.transform.position = new Vector3( pasengerReference.transform.position.x, 
+                                                                        displayedPasengers.Count * distenceBetwenePasengers + pasengerSpawnPos.transform.position.y, 
+                                                                        pasengerReference.transform.position.z);
+                    displayedPasengers.Add(pasengerReference);
+                }
             }
-        }
+        }        
     }
 
     private void OnValidate()

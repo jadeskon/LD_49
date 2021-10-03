@@ -114,6 +114,8 @@ MonoBehaviour:
   owner: {fileID: 3015606355131975932}
   pasengerSpawnPos: {fileID: 39284062797142843}
   pasengerPrefab: {fileID: 4056727797935914985, guid: 5884b834094af3d43bd60951bee2a5a5, type: 3}
+  distenceBetwenePasengers: 1.2
+  testAmountOfPasengers: 0
 --- !u!1 &1631252864997119524
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,6 +33,30 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""ff3b50bb-d7bf-4461-9114-26bd70762c66"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ActionQ"",
+                    ""type"": ""Button"",
+                    ""id"": ""4130cfaf-7ef7-41a3-b7a4-8ac3233fe5e1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""aed0a34b-da7d-4789-98ca-0daeab631a24"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -167,6 +191,39 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""action"": ""Collect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c022c24-54f6-418c-b7f6-c7c174637fda"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73789684-3757-4cef-b521-f9a03f5b3c7f"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionQ"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""abbdfc03-dee0-4524-ac26-d36eade6a01c"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -177,6 +234,9 @@ public class @InputManager : IInputActionCollection, IDisposable
         m_main = asset.FindActionMap("main", throwIfNotFound: true);
         m_main_Movement = m_main.FindAction("Movement", throwIfNotFound: true);
         m_main_Collect = m_main.FindAction("Collect", throwIfNotFound: true);
+        m_main_Reset = m_main.FindAction("Reset", throwIfNotFound: true);
+        m_main_ActionQ = m_main.FindAction("ActionQ", throwIfNotFound: true);
+        m_main_Menu = m_main.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -228,12 +288,18 @@ public class @InputManager : IInputActionCollection, IDisposable
     private IMainActions m_MainActionsCallbackInterface;
     private readonly InputAction m_main_Movement;
     private readonly InputAction m_main_Collect;
+    private readonly InputAction m_main_Reset;
+    private readonly InputAction m_main_ActionQ;
+    private readonly InputAction m_main_Menu;
     public struct MainActions
     {
         private @InputManager m_Wrapper;
         public MainActions(@InputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_main_Movement;
         public InputAction @Collect => m_Wrapper.m_main_Collect;
+        public InputAction @Reset => m_Wrapper.m_main_Reset;
+        public InputAction @ActionQ => m_Wrapper.m_main_ActionQ;
+        public InputAction @Menu => m_Wrapper.m_main_Menu;
         public InputActionMap Get() { return m_Wrapper.m_main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -249,6 +315,15 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Collect.started -= m_Wrapper.m_MainActionsCallbackInterface.OnCollect;
                 @Collect.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnCollect;
                 @Collect.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnCollect;
+                @Reset.started -= m_Wrapper.m_MainActionsCallbackInterface.OnReset;
+                @Reset.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnReset;
+                @Reset.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnReset;
+                @ActionQ.started -= m_Wrapper.m_MainActionsCallbackInterface.OnActionQ;
+                @ActionQ.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnActionQ;
+                @ActionQ.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnActionQ;
+                @Menu.started -= m_Wrapper.m_MainActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnMenu;
             }
             m_Wrapper.m_MainActionsCallbackInterface = instance;
             if (instance != null)
@@ -259,6 +334,15 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Collect.started += instance.OnCollect;
                 @Collect.performed += instance.OnCollect;
                 @Collect.canceled += instance.OnCollect;
+                @Reset.started += instance.OnReset;
+                @Reset.performed += instance.OnReset;
+                @Reset.canceled += instance.OnReset;
+                @ActionQ.started += instance.OnActionQ;
+                @ActionQ.performed += instance.OnActionQ;
+                @ActionQ.canceled += instance.OnActionQ;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
             }
         }
     }
@@ -267,5 +351,8 @@ public class @InputManager : IInputActionCollection, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnCollect(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
+        void OnActionQ(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
 }
