@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -55,12 +54,15 @@ public class UIController : MonoBehaviour
     }
 
 
-    public void ActivateGameOverScreen()
+    public void ActivateGameOverScreen(string reason)
     {
         ingameScreen.SetActive(false);
         pauseScreen.SetActive(false);
 
-        textResults.text = "Score: " + this.score + "\nRescued Passengers: " + this.passengers;
+        textResults.text = @$"{reason}
+But you managed to save {this.passengers} people.
+
+Score: {this.score}";
         gameOverScreen.SetActive(true);
     }
 
@@ -120,7 +122,13 @@ public class UIController : MonoBehaviour
 
     public void ExitButton()
     {
+        Debug.Log("Quit");
         Application.Quit();
     }
 
+    public void RestartButton()
+    {
+        Debug.Log("Restart");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
