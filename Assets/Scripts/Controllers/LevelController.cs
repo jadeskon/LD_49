@@ -16,6 +16,11 @@ public class LevelController : MonoBehaviour
     private FieldController fieldController;
     private GameLogic gameLogic;
 
+    [SerializeField]
+    private GameObject humanPreFab;
+    [SerializeField]
+    private GameObject housePreFab;
+
     public GameObject debugingCar;
 
     private void Awake()

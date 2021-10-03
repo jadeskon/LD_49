@@ -9,6 +9,8 @@ public class GameLogic
     private PlayerCharakterController charController;
     private InputController inputController;
     private UIController uiController;
+    private PlayState playState;
+    private GameOverState gameOverState;
 
     public int secPerBody = 10;
     public int scorePerBody = 5;
@@ -30,6 +32,9 @@ public class GameLogic
         inputController = iniInputController;
         soundChanel = iniSoundChanel;
         uiController = iniUiController;
+
+        playState = new PlayState(this);
+        gameOverState = new GameOverState();
     }
     public void UpdateGameLogic()
     {
