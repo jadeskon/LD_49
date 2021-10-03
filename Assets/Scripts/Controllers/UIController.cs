@@ -7,6 +7,11 @@ public class UIController : MonoBehaviour
 {
     // Publics
     public GameObject gameOverScreen;
+    public GameObject pauseScreen;
+    public GameObject ingameScreen;
+    public GameObject vulcanPlace;
+    public GameObject rescuePoint;
+    public GameObject person;
     public Text textScoreComponent;
     public Text textPassengerComponent;
     public Text textTimeComponent;
@@ -14,47 +19,57 @@ public class UIController : MonoBehaviour
     public Image arrowVulcan;
     public Image arrowRescuePoint;
     public Image arrowPerson;
-    //public Image arrowRescuePlace;
+
 
     // Privates
     private GameObject camera;
     
-    private GameObject vulcanPlace;
+    /*private GameObject vulcanPlace;
     private GameObject rescuePoint;
-    private GameObject person;
+    private GameObject person;*/
 
     private int score = 0;
     private int passengers = 0;
-    private float time;
+    private float time = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        ingameScreen.SetActive(true);
+        pauseScreen.SetActive(false);
+        gameOverScreen.SetActive(false);
+
         SetTimerDisplay(0);
         SetScoreDisplay(0);
         SetPassengersDisplay(0);
 
         camera = GameObject.Find("Main Camera");
         
-        vulcanPlace = GameObject.Find("Vulcan");
-        rescuePoint = GameObject.Find("House");
-        person = GameObject.Find("Person");
+        //vulcanPlace = GameObject.Find("Vulcan");
+        //rescuePoint = GameObject.Find("Vulcan");
+        //person = GameObject.Find("Person_test");
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateLandmarkIndicator(vulcanPlace, arrowVulcan);
-        UpdateLandmarkIndicator(rescuePoint, arrowRescuePoint);
+        if (ingameScreen.activeSelf)
+        {
+            UpdateLandmarkIndicator(vulcanPlace, arrowVulcan);
+            UpdateLandmarkIndicator(rescuePoint, arrowRescuePoint);
 
-        if(person != null)
-            UpdateLandmarkIndicator(person, arrowPerson);
+            //if (person != null)
+            UpdateLandmarkIndicator2(person, arrowPerson);
+        }
     }
 
 
     public void ActivateGameOverScreen()
     {
+        ingameScreen.SetActive(false);
+        pauseScreen.SetActive(false);
+
         textResults.text = "Score: " + this.score + "\nRescued Passengers: " + this.passengers;
         gameOverScreen.SetActive(true);
     }
@@ -92,7 +107,25 @@ public class UIController : MonoBehaviour
         Vector3 fromPosition = camera.transform.position;
 
         Vector3 targetDirection = (fromPosition - toPosition).normalized;
-        
+
+        float radian = Mathf.Atan2(-fromPosition.x, fromPosition.z);
+
+        float degree = radian * 180 / Mathf.PI;
+
+        targetDirection.z = degree + camera.transform.rotation.eulerAngles.y;
+        targetDirection.x = 0;
+        targetDirection.y = 0;
+
+        image.transform.localRotation = Quaternion.Euler(targetDirection);
+    }
+
+    private void UpdateLandmarkIndicator2(GameObject targetObject, Image image)
+    {
+        Vector3 toPosition = targetObject.transform.position;
+        Vector3 fromPosition = camera.transform.position;
+
+        Vector3 targetDirection = (fromPosition - toPosition).normalized;
+
         float radian = Mathf.Atan2(-fromPosition.x, fromPosition.z);
         float degree = radian * 180 / Mathf.PI;
 
@@ -101,6 +134,12 @@ public class UIController : MonoBehaviour
         targetDirection.y = 0;
 
         image.transform.localRotation = Quaternion.Euler(targetDirection);
+    }
+
+    public void SwitchPause()
+    {
+        ingameScreen.SetActive(!ingameScreen.activeSelf);
+        pauseScreen.SetActive(!pauseScreen.activeSelf);
     }
 
     public void ExitButton()
