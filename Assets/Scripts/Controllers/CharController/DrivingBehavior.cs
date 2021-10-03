@@ -26,9 +26,13 @@ public class DrivingBehavior
 
     private void UpdateSteeringAngle(Vector2 moveDir)
     {
-
-        wheels.frontLeftWheel.steerAngle = atributes.maxSteeringAngle * moveDir.x;
-        wheels.frontRightWheel.steerAngle = atributes.maxSteeringAngle * moveDir.x;
+        float steerT = 0.9f;
+        if(Mathf.Abs(moveDir.x) > 0.5)
+        {
+            steerT = 0.99f;
+        }
+        wheels.frontLeftWheel.steerAngle = Mathf.Lerp(atributes.maxSteeringAngle * moveDir.x, wheels.frontLeftWheel.steerAngle, steerT);
+        wheels.frontRightWheel.steerAngle = Mathf.Lerp(atributes.maxSteeringAngle * moveDir.x, wheels.frontLeftWheel.steerAngle, steerT);
     }
 
     private void UpdateWheelTorque(Vector2 moveDir)
@@ -36,13 +40,13 @@ public class DrivingBehavior
         if (moveDir.y > 0)
         {
             wheels.ReleaseBrake();
-            wheels.ApplyAccelerationTorqueOnALLWheels(atributes.maxTorque);
+            wheels.ApplyAccelerationTorqueOnFrontWheels(atributes.maxTorque);
             deccelerationTime = 0.0f;
         }
         else if (moveDir.y < 0)
         {
             wheels.ReleaseBrake();
-            wheels.ApplyAccelerationTorqueOnALLWheels(-atributes.maxTorque);
+            wheels.ApplyAccelerationTorqueOnFrontWheels(-atributes.maxTorque);
             deccelerationTime = 0.0f;
         }
         else

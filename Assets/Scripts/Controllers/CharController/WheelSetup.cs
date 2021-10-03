@@ -27,6 +27,12 @@ public class  WheelSetup
         ApplyAccelerationTorqueOnWheel(backLeftWheel, force);
     }
 
+    public void ApplyAccelerationTorqueOnFrontWheels(float force)
+    {
+        ApplyAccelerationTorqueOnWheel(frontLeftWheel, force);
+        ApplyAccelerationTorqueOnWheel(frontRightWheel, force);
+    }
+
     public void ApplyBrakeTorqueOnWheel(WheelCollider wheel, float force)
     {
         wheel.brakeTorque = force;
