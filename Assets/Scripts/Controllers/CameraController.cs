@@ -27,24 +27,45 @@ public class RunningAverage
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject character; // The car object
-    public GameObject vulcan; // The vulcan, or more generrall, the object thats always in view.
-    public float Offset; // Distance of the camera behind the car.
-    public float Height; // Dinstance of the camera above the car
-    private RunningAverage averageSpeed = new RunningAverage(30);
 
-	public static float Sigmoid(float value) {
-        return 1.0f / (1.0f + (float)System.Math.Exp(-value));
+	protected Vector3 localRotation;
+	protected Quaternion oldRotation;
+	protected Vector3 oldPosition;
+	public Transform orbit = null;
+	public Transform target = null;
+
+	public float cameraDistance = 10f;
+
+	public float orbitDampening = 5f;
+
+	public float orbitFOV = 60;
+
+	// Use this for initialization
+	void Start()
+	{
+		transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+		transform.localPosition = new Vector3(0f, 0f, 0f);
+		orbit.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+		localRotation.y += 90;
 	}
-    public void LateUpdate()
-    {
-        var characterSpeed = Vector3.Scale(character.GetComponent<Rigidbody>().velocity, new Vector3(1, 0.1f, 1)).magnitude;
-        var averagedSpeed = averageSpeed.Push(characterSpeed);
-        var scale = 1 + Sigmoid((averagedSpeed - 10) * 0.3f);
 
-        var worldVulcanToCarVector = (character.transform.position - vulcan.transform.position).normalized;
-        var worldCarToCamera = worldVulcanToCarVector * Offset + Vector3.up * Height;
-        transform.position = character.transform.position + scale * worldCarToCamera;
-        transform.LookAt(character.transform);
-    }
+	// Update is called once per frame
+	void FixedUpdate()
+	{
+
+		//zooming
+		cameraDistance = Mathf.Clamp(cameraDistance, 0.1f, 40f);
+		//actualRotation----------------------------------------------------------
+		Quaternion QT = Quaternion.Euler(25f, target.transform.rotation.eulerAngles.y, 0f);
+		//Quaternion QT = orbit.transform.localRotation.;
+		orbit.transform.localRotation = Quaternion.Slerp(orbit.transform.rotation, QT, Time.deltaTime * orbitDampening);
+		orbit.transform.position = Vector3.Lerp(orbit.transform.position, target.transform.position, Time.deltaTime * 50f);
+
+
+		if (transform.localPosition.z != cameraDistance * -1f)
+		{
+			transform.localPosition = new Vector3(0f, 0f, Mathf.Lerp(transform.localPosition.z, cameraDistance * -1f, Time.deltaTime * 10));
+		}
+	}
+
 }
