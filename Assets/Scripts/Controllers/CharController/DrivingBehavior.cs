@@ -8,6 +8,8 @@ public class DrivingBehavior
     private Rigidbody ownRigidbody;
     private DrivingAtributes atributes;
     private WheelSetup wheels;
+    private float deccelerationTime = 0.0f;
+
     public DrivingBehavior(PlayerCharakterController iniOwner, Rigidbody iniRigidbody, DrivingAtributes iniAtributes)
     {
         owner = iniOwner;
@@ -33,18 +35,21 @@ public class DrivingBehavior
     {
         if (moveDir.y > 0)
         {
-            Debug.Log(moveDir);
-            wheels.ApplyTorqueOnWheel(wheels.frontLeftWheel, atributes.maxTorque);
-            wheels.ApplyTorqueOnWheel(wheels.frontRightWheel, atributes.maxTorque);
-            wheels.ApplyTorqueOnWheel(wheels.backRightWheel, atributes.maxTorque);
-            wheels.ApplyTorqueOnWheel(wheels.backLeftWheel, atributes.maxTorque);
+            wheels.ReleaseBrake();
+            wheels.ApplyAccelerationTorqueOnALLWheels(atributes.maxTorque);
+            deccelerationTime = 0.0f;
         }
         else if (moveDir.y < 0)
         {
-            wheels.ApplyTorqueOnWheel(wheels.frontLeftWheel, -atributes.maxTorque);
-            wheels.ApplyTorqueOnWheel(wheels.frontRightWheel, -atributes.maxTorque);
-            wheels.ApplyTorqueOnWheel(wheels.backRightWheel, -atributes.maxTorque);
-            wheels.ApplyTorqueOnWheel(wheels.backLeftWheel, -atributes.maxTorque);
+            wheels.ReleaseBrake();
+            wheels.ApplyAccelerationTorqueOnALLWheels(-atributes.maxTorque);
+            deccelerationTime = 0.0f;
+        }
+        else
+        {
+            deccelerationTime += Time.fixedDeltaTime;
+            float brakeTorque = atributes.maxBrakeTorque * atributes.deccelerationProfile.Evaluate(deccelerationTime / atributes.timeToStillstand);
+            wheels.ApplyBrakeTorqueOnALLWheels(brakeTorque);
         }
         
     }

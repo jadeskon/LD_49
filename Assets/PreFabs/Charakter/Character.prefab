@@ -204,8 +204,7 @@ MonoBehaviour:
     backRightWheelTransform: {fileID: 135923635662679345}
     backLeftWheel: {fileID: 5940483482572507465}
     backLeftWheelTransform: {fileID: 2481640412548043098}
-  dirX: 0
-  moveDir: {x: 0, y: 0}
+  cameraTarget: {fileID: 5130058455282032892}
   atributes: {fileID: 11400000, guid: 9b94cc280007e5f4d846b9f3138fa5e4, type: 2}
   soundChanel: {fileID: 11400000, guid: d0632da369bc3934fbc2388ff851df59, type: 2}
   grundDetectionLength: 1.5
