@@ -17,6 +17,8 @@ public class PlayerCharakterController : MonoBehaviour
     [Header("Atributes"), SerializeField]    
     private DrivingAtributes atributes;
     [SerializeField]
+    private SoundEventSystem soundChanel;
+    [SerializeField]
     private float grundDetectionLength = 1.5f;
 
     private DrivingBehavior drivingBehavior;
@@ -86,6 +88,17 @@ public class PlayerCharakterController : MonoBehaviour
     public WheelSetup GetWheels()
     {
         return wheels;
+    }
+    
+    public void SetPasengersDisplay(int anzPasengers)
+    {
+
+    }
+
+    //Unity Utility
+    private void OnCollisionEnter(Collision collision)
+    {
+        soundChanel.PlaySound((int)SoundEnum.carHit ,Camera.main.GetComponent<AudioSource>());
     }
 
     //Gizmos

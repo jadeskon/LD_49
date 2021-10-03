@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CharakterDrivingAtributes
   m_EditorClassIdentifier: 
   maxSteeringAngle: 60
-  maxTorque: 500
+  maxTorque: 20000
   timeToMaxTorque: 2
   accelerationProfile:
     serializedVersion: 2

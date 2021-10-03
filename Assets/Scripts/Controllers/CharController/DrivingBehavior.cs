@@ -36,11 +36,15 @@ public class DrivingBehavior
             Debug.Log(moveDir);
             wheels.ApplyTorqueOnWheel(wheels.frontLeftWheel, atributes.maxTorque);
             wheels.ApplyTorqueOnWheel(wheels.frontRightWheel, atributes.maxTorque);
+            wheels.ApplyTorqueOnWheel(wheels.backRightWheel, atributes.maxTorque);
+            wheels.ApplyTorqueOnWheel(wheels.backLeftWheel, atributes.maxTorque);
         }
         else if (moveDir.y < 0)
         {
             wheels.ApplyTorqueOnWheel(wheels.frontLeftWheel, -atributes.maxTorque);
             wheels.ApplyTorqueOnWheel(wheels.frontRightWheel, -atributes.maxTorque);
+            wheels.ApplyTorqueOnWheel(wheels.backRightWheel, -atributes.maxTorque);
+            wheels.ApplyTorqueOnWheel(wheels.backLeftWheel, -atributes.maxTorque);
         }
         
     }
