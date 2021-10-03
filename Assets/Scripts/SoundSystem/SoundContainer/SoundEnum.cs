@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum SoundEnum
 {
-    testContainer = 0,
-    test2Container = 1,
+    carHit = 0,
+    engineNoise = 1,
     test3Container = 2
 }
