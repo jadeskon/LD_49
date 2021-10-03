@@ -36,7 +36,7 @@ public class GameLogic
         uiController = iniUiController;
         vulcanController = iniVulcanController;
 
-        playState = new PlayState(this);
+        playState = new PlayState(this, eventSystem);
         this.eventSystem = eventSystem;
         gameOverState = new GameOverState(iniUiController, eventSystem);
     }
