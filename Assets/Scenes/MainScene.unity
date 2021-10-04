@@ -206,10 +206,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 487766571712444444, guid: 6623a6c05ce205d4e935aabeb67efafc, type: 3}
-      propertyPath: debugingCar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 487766571712444444, guid: 6623a6c05ce205d4e935aabeb67efafc, type: 3}
       propertyPath: camController
       value: 
       objectReference: {fileID: 385206551}
@@ -1291,7 +1287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d747d085af209444be2aef8a79bb586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSystem: {fileID: 0}
+  eventSystem: {fileID: 11400000, guid: 9d902c7828b1a334986b8b803fe37660, type: 2}
 --- !u!65 &1609017387
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1468,6 +1464,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1859186469}
   - component: {fileID: 1859186468}
+  - component: {fileID: 1859186470}
   m_Layer: 0
   m_Name: SavePlace
   m_TagString: Untagged
@@ -1502,6 +1499,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1859186470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859186467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb739ec2710bfa41a17233a6e1273bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSystem: {fileID: 11400000, guid: 9d902c7828b1a334986b8b803fe37660, type: 2}
 --- !u!4 &1928233489 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5290433324119550110, guid: dc5a01c95659ded4ca0468f845306bd6, type: 3}

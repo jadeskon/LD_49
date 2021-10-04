@@ -21,8 +21,8 @@ public class PlayState
     private bool isCarInSaveZone = false;
     private bool isCarInSacrifizeZone = false;
 
-    public int secPerBody = 10;
-    public int scorePerBody = 5;
+    public int secPerBody = 30;
+    public int scorePerBody = 50;
 
     private int score = 0;
     private float countDownTime = 180f;
@@ -39,6 +39,7 @@ public class PlayState
 
         gameEventChanel.saveZoneTriggerEvent += SaveZoneTrigger;
         gameEventChanel.sacrifizeZoneTriggerEvent+= SacrificeZoneTrigger;
+        gameEventChanel.personCollectedEvent += PickUpPerson;
 
         hr = new HumanResources(this);
 
@@ -69,6 +70,12 @@ public class PlayState
     private void UpdateTimer()
     {
         countDownTime -= Time.fixedDeltaTime;
+
+        if (countDownTime < 0)
+        {
+            isStateAktive = false;
+            gameEventChanel.GameOver("The volcano erupted - at least you can watch the Fireworks!");
+        }
     }
 
     private void SetUpGame()
@@ -91,16 +98,25 @@ public class PlayState
         charController = playerCarInstance.GetComponent<PlayerCharakterController>();
     }
 
-	internal void ResetState()
+	public void ResetState()
 	{
+        isCarInSaveZone = false;
+        isCarInSacrifizeZone = false;
+
+        score = 0;
+        countDownTime = 180f;
+
         hr.Reset();
-	}
+
+        SetUpGame();
+    }
 
     public void SaveHuman()
     {
         if (hr.GetCountOfCarPersons() > 0)
         {
             hr.RemovePersonsOfCar();
+            charController.SetPasengersDisplay(hr.GetCountOfCarPersons());
             score += scorePerBody;
         }
     }
@@ -110,6 +126,7 @@ public class PlayState
         if (hr.GetCountOfCarPersons() > 0)
         {
             hr.RemovePersonsOfCar();
+            charController.SetPasengersDisplay(hr.GetCountOfCarPersons());
             countDownTime += secPerBody;
         }
     }
@@ -118,9 +135,17 @@ public class PlayState
     {
         isCarInSaveZone = triggerState;
     }
+
     private void SacrificeZoneTrigger(bool triggerState)
     {
         isCarInSacrifizeZone = triggerState;
+    }
+
+    private void PickUpPerson(HouseController houseController)
+    {
+        hr.PickUpPerson(houseController);
+        charController.SetPasengersDisplay(hr.GetCountOfCarPersons());
+        //Play Sound for Picking someone Up
     }
 
     //Getters
@@ -134,7 +159,7 @@ public class PlayState
         return score;
     }
 
-    public int GetAmountOfPasangers()
+    public uint GetAmountOfPasangers()
     {
         return hr.GetCountOfCarPersons();
     }

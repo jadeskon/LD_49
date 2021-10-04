@@ -9,11 +9,11 @@ public class HumanResources
     GameplayEventSystem gameEventChanel;
 
     public List<HouseController> activePersons { get; private set; }
-    public int personsInCar { get; private set; }
+    public uint personsInCar { get; private set; }
     
     private List<HouseController> houseControllerList;
-    private int countSavedPersons;
-    private int countSacrificePersons;
+    private uint countSavedPersons;
+    private uint countSacrificePersons;
 
     private uint personsInQuewe = 0;
 
@@ -23,7 +23,6 @@ public class HumanResources
 
         gameEventChanel = owner.GetGameEventChanel();
         gameEventChanel.registerHomeEvent += RegisterHome;
-        gameEventChanel.personCollectedEvent += PickUpPerson;
 
         Reset();
     }
@@ -118,22 +117,22 @@ public class HumanResources
         return activePersons;
     }
 
-    public int GetCountOfActivePersons()
+    public uint GetCountOfActivePersons()
     {
-        return activePersons.Count;
+        return (uint)activePersons.Count;
     }
 
-    public int GetCountOfCarPersons()
+    public uint GetCountOfCarPersons()
     {
         return personsInCar;
     }
 
-    public int GetCountOfSavedPersons()
+    public uint GetCountOfSavedPersons()
     {
         return countSavedPersons;
     }
 
-    public int GetCountOfSacrificedPersons()
+    public uint GetCountOfSacrificedPersons()
     {
         return countSavedPersons;
     }
