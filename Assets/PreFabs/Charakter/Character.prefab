@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 273961366016309950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -1.25}
+  m_LocalPosition: {x: 0, y: 0.804, z: -1.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8447424765680699168}
@@ -114,7 +114,7 @@ MonoBehaviour:
   owner: {fileID: 3015606355131975932}
   pasengerSpawnPos: {fileID: 39284062797142843}
   pasengerPrefab: {fileID: 4056727797935914985, guid: 5884b834094af3d43bd60951bee2a5a5, type: 3}
-  distenceBetwenePasengers: 1.2
+  distenceBetwenePasengers: 0.15
   testAmountOfPasengers: 0
 --- !u!1 &1631252864997119524
 GameObject:
