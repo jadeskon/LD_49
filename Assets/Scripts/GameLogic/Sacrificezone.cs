@@ -10,7 +10,7 @@ public class Sacrificezone : MonoBehaviour
 		var player = collider.GetComponent<PlayerCharakterController>();
 		if (player != null)
         {
-			eventSystem.InfoPopupTrigger("Sacrifize to the Mounten GOD!!! (by pressing Space)");
+			eventSystem.InfoPopupTrigger("Make a sacrifice to the mountain GOD!!! (press Space)");
 			eventSystem.SacrifizeZoneTrigger(true);
         }
 	}

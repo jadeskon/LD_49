@@ -59,4 +59,13 @@ public class GameplayEventSystem : ScriptableObject
             infoPopupTriggerEvent(textToDisplay);
         }
     }
+
+    public event Action<List<HouseController>> setPersonsTriggerEvent;
+    public void SetPersonsTrigger(List<HouseController> houseControllers)
+    {
+        if (setPersonsTriggerEvent != null)
+        {
+            setPersonsTriggerEvent(houseControllers);
+        }
+    }
 }

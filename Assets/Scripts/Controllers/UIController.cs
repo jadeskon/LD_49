@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System;
 
 public class UIController : MonoBehaviour
 {
@@ -11,7 +13,6 @@ public class UIController : MonoBehaviour
     public GameObject vulcanPlace;
     public GameObject rescuePointDock;
     public GameObject rescuePointAirfield;
-    public GameObject person;
     public Text textScoreComponent;
     public Text textPassengerComponent;
     public Text textTimeComponent;
@@ -22,15 +23,24 @@ public class UIController : MonoBehaviour
     public Image arrowPerson;
 
     public GameplayEventSystem gameEventChanel;
+    private List<HouseController> houseControllerList;
+
 
     // Privates
     private Camera currentCamera;
 
     private int score = 0;
     private int passengers = 0;
+
+    internal void SetHR(HumanResources humanResources)
+    {
+        this.hr = humanResources;
+    }
+
     private float time = 0;
 
     private LevelController levelController;
+    private HumanResources hr;
 
     public void SetLevelController(LevelController levelController)
     {
@@ -41,6 +51,7 @@ public class UIController : MonoBehaviour
     void Start()
     {
         gameEventChanel.infoPopupTriggerEvent += Info;
+        gameEventChanel.setPersonsTriggerEvent += SetHouseControllers;
 
         ingameScreen.SetActive(true);
         pauseScreen.SetActive(false);
@@ -74,7 +85,13 @@ public class UIController : MonoBehaviour
             else
                 UpdateLandmarkIndicator(rescuePointAirfield, arrowRescuePoint);
 
+
+            GameObject person = hr.GetClosestPerson(currentCamera.transform.position).gameObject;
+
             UpdateLandmarkIndicator(person, arrowPerson);
+
+            person = null;
+            
         }
     }
 
@@ -113,11 +130,6 @@ Score: {this.score}";
         textPassengerComponent.text = "Passengers: " + passengers;
     }
 
-    public void SetPassenger(GameObject person)
-    {
-        this.person = person;
-    }
-
     private void UpdateLandmarkIndicator(GameObject targetObject, Image image)
     {
         if (targetObject != null)
@@ -127,7 +139,10 @@ Score: {this.score}";
             Vector3 toPosition = targetObject.transform.position;
             Vector3 fromPosition = currentCamera.transform.position;
 
-            Vector3 targetDirection = (fromPosition - toPosition).normalized;
+            Vector3 targetDirection = (fromPosition - toPosition);
+
+            dir.y = 0;
+            targetDirection.y = 0;
 
             float degree = Vector3.SignedAngle(dir, targetDirection, Vector3.down);
 
@@ -166,5 +181,10 @@ Score: {this.score}";
         ingameScreen.SetActive(true);
         pauseScreen.SetActive(false);
         gameOverScreen.SetActive(false);
+    }
+
+    public void SetHouseControllers(List<HouseController> houseControllers)
+    {
+        houseControllerList = houseControllers;
     }
 }
