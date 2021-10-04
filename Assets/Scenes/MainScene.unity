@@ -217,6 +217,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelController
       objectReference: {fileID: 0}
+    - target: {fileID: 3112573236328275688, guid: 6623a6c05ce205d4e935aabeb67efafc, type: 3}
+      propertyPath: vulcanPlace
+      value: 
+      objectReference: {fileID: 1609017385}
+    - target: {fileID: 3112573236328275688, guid: 6623a6c05ce205d4e935aabeb67efafc, type: 3}
+      propertyPath: rescuePointDock
+      value: 
+      objectReference: {fileID: 1170727844}
+    - target: {fileID: 3112573236328275688, guid: 6623a6c05ce205d4e935aabeb67efafc, type: 3}
+      propertyPath: rescuePointAirfield
+      value: 
+      objectReference: {fileID: 1859186467}
     - target: {fileID: 8305877826462497350, guid: 6623a6c05ce205d4e935aabeb67efafc, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -987,6 +999,64 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1148661584828427083, guid: 6d0d63611cba42e4083299959c564606, type: 3}
   m_PrefabInstance: {fileID: 1690249644}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1170727844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1170727847}
+  - component: {fileID: 1170727846}
+  - component: {fileID: 1170727845}
+  m_Layer: 0
+  m_Name: SavePlace_Dock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1170727845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170727844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb739ec2710bfa41a17233a6e1273bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSystem: {fileID: 11400000, guid: 9d902c7828b1a334986b8b803fe37660, type: 2}
+--- !u!65 &1170727846
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170727844}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.9401245, y: 1, z: 10.2659}
+  m_Center: {x: 2.4700623, y: 0, z: 4.63295}
+--- !u!4 &1170727847
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170727844}
+  m_LocalRotation: {x: -0, y: -0.12404444, z: -0, w: 0.99227667}
+  m_LocalPosition: {x: 573.8, y: 8.4, z: 355.7}
+  m_LocalScale: {x: 9.284118, y: 12.240077, z: 5.4745383}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: -14.251, z: 0}
 --- !u!1001 &1342192043
 PrefabInstance:
   m_ObjectHideFlags: 0
