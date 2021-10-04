@@ -2,28 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class RunningAverage
-{
-    int Count;
-    List<float> Values;
-    public RunningAverage(int count)
-    {
-        Count = count;
-        Values = new List<float>(count);
-    }
-    public float Push(float value)
-    {
-        if (Values.Count == Count)
-            Values.RemoveAt(0);
-        Values.Add(value);
-        return Average();
-    }
-    public void Clear()
-    {
-        Values.Clear();
-    }
-    public float Average() => Values.Average();
-}
 /*
 public class CameraController : MonoBehaviour
 {
@@ -71,6 +49,8 @@ public class CameraController : MonoBehaviour
     protected Transform target = null;
     [SerializeField]
     protected Transform volcano = null;
+    [SerializeField]
+    Rigidbody characterRB = null;
 
     [SerializeField]
     protected float cameraDistance = 30f;
@@ -87,13 +67,24 @@ public class CameraController : MonoBehaviour
         localRotation.y += 90;
     }
 
+    public static float Sigmoid(float value)
+    {
+        return 1.0f / (1.0f + (float)System.Math.Exp(-value));
+    }
+
+
     // Update is called once per frame
     void FixedUpdate()
     {
         if (target != null)
         {
             //zooming
-            //cameraDistance = Mathf.Clamp(cameraDistance, 0.1f, 40f);
+            float velocity = characterRB.velocity.magnitude;
+            float scale = Sigmoid((velocity - 2) * 0.1f);
+            cameraDistance = Mathf.Clamp(scale * 40, 10f, 40f);
+
+            Debug.Log(cameraDistance);
+
             //actualRotation----------------------------------------------------------
             Quaternion QTForward = Quaternion.Euler(25f, target.transform.rotation.eulerAngles.y, 0f);
             Vector3 volano_direction = volcano.position - transform.position;
@@ -102,7 +93,6 @@ public class CameraController : MonoBehaviour
             Quaternion QTVolcano = Quaternion.LookRotation(volano_direction, new Vector3(0,1,0));
 
             float cameraSwitch = Mathf.Clamp((distance - 100) / 200,0,1);
-            Debug.Log(cameraSwitch);
             //Quaternion QT = orbit.transform.localRotation.;
 
             orbit.transform.localRotation = Quaternion.Slerp(orbit.transform.rotation, Quaternion.Slerp(QTVolcano, QTForward, cameraSwitch), Time.deltaTime * orbitDampening);
@@ -120,6 +110,7 @@ public class CameraController : MonoBehaviour
     public void SetCameraTarget(Transform target_n)
     {
         target = target_n;
+        characterRB = target.GetComponentInParent<PlayerCharakterController>().gameObject.GetComponent<Rigidbody>();
     }
 
 }
