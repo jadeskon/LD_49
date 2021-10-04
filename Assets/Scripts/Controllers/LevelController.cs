@@ -38,7 +38,7 @@ public class LevelController : MonoBehaviour
     private void Awake()
     {
         gameLogic = new GameLogic(this);
-        vulcanController = new VulcanController(fieldController.vulcanParticleSystem);
+        //vulcanController = new VulcanController(fieldController.vulcanParticleSystem);
 
         if (isDebugging && debugingCar != null)
         {
