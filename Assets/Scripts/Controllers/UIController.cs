@@ -139,7 +139,10 @@ Score: {this.score}";
             Vector3 toPosition = targetObject.transform.position;
             Vector3 fromPosition = currentCamera.transform.position;
 
-            Vector3 targetDirection = Vector3.Scale(new Vector3(1,0,1), (fromPosition - toPosition)).normalized;
+            Vector3 targetDirection = (fromPosition - toPosition);
+
+            dir.y = 0;
+            targetDirection.y = 0;
 
             float degree = Vector3.SignedAngle(dir, targetDirection, Vector3.down);
 
