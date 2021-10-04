@@ -25,7 +25,8 @@ public class PlayState
     public int scorePerBody = 50;
 
     private int score = 0;
-    private float countDownTime = 300f;
+    private const float START_COUNT_DOWN_TIME = 300f;
+    private float countDownTime = START_COUNT_DOWN_TIME;
     float saveCooldownTime = 0;
     float timeBetweenSaves = 0.8f;
     float sacriviceCooldownTime = 0;
@@ -106,7 +107,9 @@ public class PlayState
 
     private void SetUpPlayerController()
     {
-        playerCarInstance = MonoBehaviour.Instantiate(  owner.GetPlayerCarPrefab(),
+        if(playerCarInstance != null)
+			UnityEngine.Object.Destroy(playerCarInstance);
+		playerCarInstance = MonoBehaviour.Instantiate(  owner.GetPlayerCarPrefab(),
                                                         owner.GetPlayerSpawnPos().position,
                                                         Quaternion.identity);
 
@@ -119,7 +122,7 @@ public class PlayState
         isCarInSacrifizeZone = false;
 
         score = 0;
-        countDownTime = 180f;
+        countDownTime = START_COUNT_DOWN_TIME;
         savedPeople = 0;
 
         hr.Reset();
