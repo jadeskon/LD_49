@@ -83,8 +83,6 @@ public class CameraController : MonoBehaviour
             float scale = Sigmoid((velocity - 2) * 0.1f);
             cameraDistance = Mathf.Clamp(scale * 40, 10f, 40f);
 
-            Debug.Log(cameraDistance);
-
             //actualRotation----------------------------------------------------------
             Quaternion QTForward = Quaternion.Euler(25f, target.transform.rotation.eulerAngles.y, 0f);
             Vector3 volano_direction = volcano.position - transform.position;
