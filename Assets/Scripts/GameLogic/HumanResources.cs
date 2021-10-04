@@ -104,9 +104,9 @@ public class HumanResources
             countSacrificePersons++;
     }
 
-    public void RemovePersonsOfCar ()
+    public void RemovePersonOfCar ()
     {
-        personsInCar = 0;
+        personsInCar--;
     }
 
     public void PickUpPerson(HouseController housOfPerson)
