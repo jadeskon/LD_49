@@ -24,7 +24,7 @@ public class RunningAverage
     }
     public float Average() => Values.Average();
 }
-
+/*
 public class CameraController : MonoBehaviour
 {
     public GameObject character; // The car object
@@ -57,4 +57,69 @@ public class CameraController : MonoBehaviour
         lookAtTarget = target;
         character = target.GetComponentInParent<PlayerCharakterController>().gameObject;
     }
+}
+*/
+
+public class CameraController : MonoBehaviour
+{
+    protected Vector3 localRotation;
+    protected Quaternion oldRotation;
+    protected Vector3 oldPosition;
+    [SerializeField]
+    protected Transform orbit = null;
+    [SerializeField]
+    protected Transform target = null;
+    [SerializeField]
+    protected Transform volcano = null;
+
+    [SerializeField]
+    protected float cameraDistance = 30f;
+
+    [SerializeField]
+    protected float orbitDampening = 5f;
+
+    // Use this for initialization
+    void Start()
+    {
+        transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        transform.localPosition = new Vector3(0f, 0f, 0f);
+        orbit.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        localRotation.y += 90;
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (target != null)
+        {
+            //zooming
+            //cameraDistance = Mathf.Clamp(cameraDistance, 0.1f, 40f);
+            //actualRotation----------------------------------------------------------
+            Quaternion QTForward = Quaternion.Euler(25f, target.transform.rotation.eulerAngles.y, 0f);
+            Vector3 volano_direction = volcano.position - transform.position;
+            float distance = volano_direction.magnitude;
+            volano_direction.y = 0;
+            Quaternion QTVolcano = Quaternion.LookRotation(volano_direction, new Vector3(0,1,0));
+
+            float cameraSwitch = Mathf.Clamp((distance - 100) / 200,0,1);
+            Debug.Log(cameraSwitch);
+            //Quaternion QT = orbit.transform.localRotation.;
+
+            orbit.transform.localRotation = Quaternion.Slerp(orbit.transform.rotation, Quaternion.Slerp(QTVolcano, QTForward, cameraSwitch), Time.deltaTime * orbitDampening);
+            orbit.transform.position = Vector3.Lerp(orbit.transform.position, target.transform.position, Time.deltaTime * 50f);
+
+
+            if (transform.localPosition.z != cameraDistance * -1f)
+            {
+                transform.localPosition = new Vector3(0f, 0f, Mathf.Lerp(transform.localPosition.z, cameraDistance * -1f, Time.deltaTime * 10));
+            }
+
+        }
+    }
+
+    public void SetCameraTarget(Transform target_n)
+    {
+        target = target_n;
+    }
+
 }
