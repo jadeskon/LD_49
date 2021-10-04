@@ -126,6 +126,7 @@ public class PlayerCharakterController : MonoBehaviour
 
     public void SetPasengersDisplay(uint newAmountOfPasengers)
     {
+        ownRigidbody.centerOfMass = new Vector3(0, -0.5f + (newAmountOfPasengers * 0.02f), 0);
         grafiksController.SetAmountDisplayedPasengers(newAmountOfPasengers);
     }
 
