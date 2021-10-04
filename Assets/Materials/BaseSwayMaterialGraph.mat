@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BaseMaterialGraph
+  m_Name: BaseSwayMaterialGraph
   m_Shader: {fileID: -6465566751694194690, guid: 404e6b5037ea62847989c710c4b9378b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -86,13 +86,13 @@ Material:
     m_Floats:
     - Vector1_3bb5188acff841eda57f138b13fcd97f: 0.01
     - Vector1_3d90366fb436498eb51d79c0ba8ead81: 0.005
-    - Vector1_5a0a2ecaa32b4b4a9c3d356b893b3e12: 0
+    - Vector1_5a0a2ecaa32b4b4a9c3d356b893b3e12: 0.3
     - Vector1_5b769d5611424ba9b20a9d406c9a8747: 3000
     - Vector1_7f30eaf39f4949e1903523f57e843ae5: 0.58
     - Vector1_8b0cd9f487974571953a0cae011bdbc7: 0.0005
     - Vector1_8d28671bbcf9403aa8b6bf1e17f65f9e: 0.1
-    - Vector1_a94a82c2d40b4e6a92e215abf1b85220: 0
-    - Vector1_b72dda1342634f7ca165477d85869d35: 0
+    - Vector1_a94a82c2d40b4e6a92e215abf1b85220: 30
+    - Vector1_b72dda1342634f7ca165477d85869d35: 0.005
     - Vector1_d30e1f2229034aa7989fe923a5d7230b: 0.0000001
     - _AlphaClip: 0
     - _Blend: 0
