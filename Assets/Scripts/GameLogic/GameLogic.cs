@@ -30,6 +30,8 @@ public class GameLogic
 
         playState = new PlayState(this);
         gameOverState = new GameOverState(uiController, gameEventChanel);
+
+		inputController.OnMenu += InputController_OnMenu;
     }
 
 	public void ResetGameLogic()
@@ -54,12 +56,18 @@ public class GameLogic
     public void SetCharacterController(PlayerCharakterController newCharController)
     {
         playState.SetCharacterController(newCharController);
-    } 
-
-    public void CallMenu ()
-    {
-        uiController.SwitchPause();
     }
+
+	private void InputController_OnMenu()
+	{
+        if (Time.timeScale == 0)
+            Time.timeScale = 1;
+        else
+            Time.timeScale = 0;
+
+        LevelController.MuteSoundVolume = !LevelController.MuteSoundVolume;
+        uiController.SwitchPause();
+	}
 
     public void UpdateUi ()
     {

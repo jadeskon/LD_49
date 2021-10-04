@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,7 @@ public class InputController : MonoBehaviour
         inputManager.main.Collect.canceled += _ => Collect(false);
         inputManager.main.Reset.performed += _ => Reset(true);
         inputManager.main.Reset.canceled += _ => Reset(false);
-        inputManager.main.Menu.performed += _ => Menu(true);
+        inputManager.main.Menu.performed += _ => { Menu(true); OnMenu?.Invoke(); };
         inputManager.main.Menu.canceled += _ => Menu(false);
         inputManager.main.ActionQ.performed += _ => ActionQ(true);
         inputManager.main.ActionQ.canceled += _ => ActionQ(false);
@@ -62,6 +63,8 @@ public class InputController : MonoBehaviour
     {
         return inputs;
     }
+
+    public event Action OnMenu;
 }
 
 public struct Inputs

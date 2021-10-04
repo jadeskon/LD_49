@@ -142,6 +142,8 @@ Score: {this.score}";
 
     public void SwitchPause()
     {
+        if (gameOverScreen.activeSelf)
+            return;
         ingameScreen.SetActive(!ingameScreen.activeSelf);
         pauseScreen.SetActive(!pauseScreen.activeSelf);
     }

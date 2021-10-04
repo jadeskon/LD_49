@@ -57,9 +57,11 @@ public class PlayerCharakterController : MonoBehaviour
         engineSoundIdle.pitch = Mathf.Max(1,(engineSpeed / 10) % 3);
         engineSoundLoad.pitch = ((engineSpeed / 4) % 2)/3 + 0.5f;
 
-        engineSoundIdle.volume = Mathf.Min(1,1 - (engineSpeed / 2));
-        engineSoundLoad.volume = Mathf.Min(1, engineSpeed / 2);
+        engineSoundIdle.volume = 0.5f * Mathf.Min(1,1 - (engineSpeed / 2));
+        engineSoundLoad.volume = 0.5f * Mathf.Min(1, engineSpeed / 2);
 
+        engineSoundIdle.mute = LevelController.MuteSoundVolume;
+        engineSoundLoad.mute = LevelController.MuteSoundVolume;
     }
 
     public void UpdatePlayerController(Inputs newInputs)

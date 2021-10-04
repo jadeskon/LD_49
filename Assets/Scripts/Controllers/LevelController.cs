@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
+    public static bool MuteSoundVolume = false;
+
     [Header("Chanels")]
     [SerializeField]
     private SoundEventSystem soundChanel;
