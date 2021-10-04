@@ -30,8 +30,9 @@ public class PlayState
     float timeBetweenSaves = 0.8f;
     float sacriviceCooldownTime = 0;
     float timeBetweensacrivice = 0.8f;
+	public int savedPeople;
 
-    public PlayState(GameLogic iniGameLogic)
+	public PlayState(GameLogic iniGameLogic)
     {
         owner = iniGameLogic;
 
@@ -119,6 +120,7 @@ public class PlayState
 
         score = 0;
         countDownTime = 180f;
+        savedPeople = 0;
 
         hr.Reset();
 
@@ -132,6 +134,7 @@ public class PlayState
             hr.RemovePersonOfCar();
             charController.SetPasengersDisplay(hr.GetCountOfCarPersons());
             score += scorePerBody;
+            ++savedPeople;
         }
     }
 

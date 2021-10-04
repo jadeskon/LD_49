@@ -73,6 +73,7 @@ public class GameLogic
     public void UpdateUi ()
     {
         uiController.SetPassengersDisplay((int)playState.GetAmountOfPasangers());
+        uiController.SetSavedPeople(playState.savedPeople);
         uiController.SetScoreDisplay(playState.GetScore());
         uiController.SetTimerDisplay(playState.GetCountDownTime());
     }
