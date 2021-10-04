@@ -765,6 +765,7 @@ Transform:
   - {fileID: 5941605633163057087}
   - {fileID: 2618170445286923365}
   - {fileID: 1257269552565241974}
+  - {fileID: 2985519180268345901}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -817,6 +818,96 @@ Transform:
   m_Father: {fileID: 408297119951114723}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7444870010795280746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2985519180268345901}
+  - component: {fileID: 2212168428120148263}
+  - component: {fileID: 720304574552815669}
+  - component: {fileID: 143257123286319177}
+  - component: {fileID: 2893824148256092194}
+  m_Layer: 0
+  m_Name: Death collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2985519180268345901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7444870010795280746}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5290433324119550110}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &2212168428120148263
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7444870010795280746}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1320373289210092496, guid: fa0e0845cfd33814dabfd74310e3cbad, type: 3}
+--- !u!64 &720304574552815669
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7444870010795280746}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1940689376268621069, guid: fa0e0845cfd33814dabfd74310e3cbad, type: 3}
+--- !u!64 &143257123286319177
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7444870010795280746}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6046931344274249971, guid: fa0e0845cfd33814dabfd74310e3cbad, type: 3}
+--- !u!114 &2893824148256092194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7444870010795280746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffbc0d7aae58a644d963e28408dcdfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Reason: 
+  eventSystem: {fileID: 11400000, guid: 9d902c7828b1a334986b8b803fe37660, type: 2}
 --- !u!1 &8417527968130369217
 GameObject:
   m_ObjectHideFlags: 0
@@ -4218,14 +4309,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42321350d62c72c448ba0733e7be3513, type: 3}
---- !u!198 &7439010557479967372 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8621889054035110357, guid: 42321350d62c72c448ba0733e7be3513, type: 3}
-  m_PrefabInstance: {fileID: 1196751172483822425}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2214896759235075779 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1019874034335149466, guid: 42321350d62c72c448ba0733e7be3513, type: 3}
+  m_PrefabInstance: {fileID: 1196751172483822425}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7439010557479967372 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8621889054035110357, guid: 42321350d62c72c448ba0733e7be3513, type: 3}
   m_PrefabInstance: {fileID: 1196751172483822425}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1205562819619006421
