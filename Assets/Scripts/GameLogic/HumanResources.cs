@@ -62,6 +62,7 @@ public class HumanResources
                 {
                     controller.SpawnPerson();
                     personsPlaced++;
+                    activePersons.Add(controller);
                 }
             }
         }
@@ -69,6 +70,8 @@ public class HumanResources
         {
             personsInQuewe = count;
         }
+
+        
     }
 
     public HouseController GetClosestPerson(Vector3 fromPosition)
