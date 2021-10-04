@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 130805561270531645}
   m_Layer: 0
   m_Name: Main Camera Orbit
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,6 +164,7 @@ MonoBehaviour:
   orbit: {fileID: 130805561270531645}
   target: {fileID: 0}
   volcano: {fileID: 0}
+  characterRB: {fileID: 0}
   cameraDistance: 30
   orbitDampening: 5
 --- !u!82 &5954081496135377131
