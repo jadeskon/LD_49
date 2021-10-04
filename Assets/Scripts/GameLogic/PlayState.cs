@@ -25,7 +25,11 @@ public class PlayState
     public int scorePerBody = 50;
 
     private int score = 0;
-    private float countDownTime = 180f;
+    private float countDownTime = 300f;
+    float saveCooldownTime = 0;
+    float timeBetweenSaves = 0.8f;
+    float sacriviceCooldownTime = 0;
+    float timeBetweensacrivice = 0.8f;
 
     public PlayState(GameLogic iniGameLogic)
     {
@@ -60,12 +64,17 @@ public class PlayState
             charController.UpdatePlayerController(inputController.GetInput());
         }
 
-        if (inputController.GetInput().collect && isCarInSaveZone)
+        saveCooldownTime += Time.fixedDeltaTime;
+        sacriviceCooldownTime += Time.fixedDeltaTime;
+
+        if (inputController.GetInput().collect && isCarInSaveZone && saveCooldownTime > timeBetweenSaves)
         {
+            saveCooldownTime = 0f;
             SaveHuman();
         }
-        if (inputController.GetInput().collect && isCarInSacrifizeZone)
+        if (inputController.GetInput().collect && isCarInSacrifizeZone && sacriviceCooldownTime > timeBetweensacrivice)
         {
+            sacriviceCooldownTime = 0f;
             SacrificeHuman();
         }
 
@@ -120,7 +129,7 @@ public class PlayState
     {
         if (hr.GetCountOfCarPersons() > 0)
         {
-            hr.RemovePersonsOfCar();
+            hr.RemovePersonOfCar();
             charController.SetPasengersDisplay(hr.GetCountOfCarPersons());
             score += scorePerBody;
         }
@@ -130,7 +139,7 @@ public class PlayState
     {
         if (hr.GetCountOfCarPersons() > 0)
         {
-            hr.RemovePersonsOfCar();
+            hr.RemovePersonOfCar();
             charController.SetPasengersDisplay(hr.GetCountOfCarPersons());
             countDownTime += secPerBody;
         }
