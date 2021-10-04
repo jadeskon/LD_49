@@ -69,7 +69,7 @@ public class UIController : MonoBehaviour
             if (rescuePointAirfield != null)
                 distanceAirfield = (currentCamera.transform.position - rescuePointAirfield.transform.position).magnitude;
 
-            if (distanceDock < distanceAirfield)
+            if (distanceDock < distanceAirfield && rescuePointDock != null)
                 UpdateLandmarkIndicator(rescuePointDock, arrowRescuePoint);
             else
                 UpdateLandmarkIndicator(rescuePointAirfield, arrowRescuePoint);

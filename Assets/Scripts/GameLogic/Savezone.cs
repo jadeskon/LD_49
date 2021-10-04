@@ -10,6 +10,7 @@ public class Savezone : MonoBehaviour
 		var player = collider.GetComponent<PlayerCharakterController>();
 		if (player != null)
 		{
+			eventSystem.InfoPopupTrigger("Save the people from the volcano!!! (by pressing Space)");
 			eventSystem.SaveZoneTrigger(true);
 		}
 	}
@@ -19,6 +20,7 @@ public class Savezone : MonoBehaviour
 		var player = collider.GetComponent<PlayerCharakterController>();
 		if (player != null)
 		{
+			eventSystem.InfoPopupTrigger("");
 			eventSystem.SaveZoneTrigger(false);
 		}
 	}
