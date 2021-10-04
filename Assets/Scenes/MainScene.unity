@@ -208,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 487766571712444444, guid: 6623a6c05ce205d4e935aabeb67efafc, type: 3}
       propertyPath: camController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1126255101}
     - target: {fileID: 487766571712444444, guid: 6623a6c05ce205d4e935aabeb67efafc, type: 3}
       propertyPath: fieldController
       value: 
@@ -905,6 +905,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4570105652328794729, guid: cf431d885180ebf429f261c281c9a94b, type: 3}
+      propertyPath: volcano
+      value: 
+      objectReference: {fileID: 1859186469}
     - target: {fileID: 8914574490249042904, guid: cf431d885180ebf429f261c281c9a94b, type: 3}
       propertyPath: Height
       value: 7
@@ -1471,6 +1475,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1148661584828427083, guid: 6d0d63611cba42e4083299959c564606, type: 3}
   m_PrefabInstance: {fileID: 1690249644}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1126255101 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4570105652328794729, guid: cf431d885180ebf429f261c281c9a94b, type: 3}
+  m_PrefabInstance: {fileID: 385206550}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5386c4ac85a7dd8499468bbea72be159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1342192043
 PrefabInstance:
   m_ObjectHideFlags: 0
