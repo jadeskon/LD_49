@@ -95,16 +95,26 @@ public class UIController : MonoBehaviour
         }
     }
 
+    int countSavedPeople;
 
-    public void ActivateGameOverScreen(string reason)
+	internal void SetSavedPeople(int savedPeople)
+	{
+        countSavedPeople = savedPeople;
+	}
+
+	public void ActivateGameOverScreen(string reason)
     {
         ingameScreen.SetActive(false);
         pauseScreen.SetActive(false);
 
-        textResults.text = @$"{reason}
-But you managed to save {this.passengers} people.
-
-Score: {this.score}";
+        string text = "";
+        text += $"{reason}\n";
+        if (countSavedPeople > 0)
+            text += $"But you managed to save {this.countSavedPeople} people.\n";
+        else
+            text += $"You saved no one ... great job.\n";
+		text += $"Score: {this.score}";
+        textResults.text = text;
         gameOverScreen.SetActive(true);
     }
 
