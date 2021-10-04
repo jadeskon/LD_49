@@ -90,7 +90,7 @@ public class CameraController : MonoBehaviour
             volano_direction.y = 0;
             Quaternion QTVolcano = Quaternion.LookRotation(volano_direction, new Vector3(0,1,0));
 
-            float cameraSwitch = Mathf.Clamp((distance - 100) / 200,0,1);
+            float cameraSwitch = Mathf.Clamp((distance - 200) / 100,0,1);
             //Quaternion QT = orbit.transform.localRotation.;
 
             orbit.transform.localRotation = Quaternion.Slerp(orbit.transform.rotation, Quaternion.Slerp(QTVolcano, QTForward, cameraSwitch), Time.deltaTime * orbitDampening);
