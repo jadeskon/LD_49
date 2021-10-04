@@ -119,9 +119,9 @@ public class PlayerCharakterController : MonoBehaviour
         return wheels;
     }
     
-    public Vector3 GetCameraTarget()
+    public Transform GetCameraTarget()
     {
-        return cameraTarget.position;
+        return cameraTarget;
     }
 
     public void SetPasengersDisplay(uint newAmountOfPasengers)

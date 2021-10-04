@@ -101,7 +101,7 @@ public class GameLogic
     }
 
     //Setters
-    public void SetCameraTargte(GameObject newTarget)
+    public void SetCameraTargte(Transform newTarget)
     {
         owner.SetCameraTarget(newTarget);
     }

@@ -84,7 +84,7 @@ public class PlayState
 
         SetUpPlayerController();
 
-        owner.SetCameraTargte(playerCarInstance);
+        owner.SetCameraTargte(charController.GetCameraTarget());
 
         hr.SpawnPersons(20);
     }

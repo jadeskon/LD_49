@@ -99,7 +99,7 @@ public class LevelController : MonoBehaviour
     }
 
     //Setters
-    public void SetCameraTarget(GameObject newTarget)
+    public void SetCameraTarget(Transform newTarget)
     {
         camController.SetCameraTarget(newTarget);
     }
