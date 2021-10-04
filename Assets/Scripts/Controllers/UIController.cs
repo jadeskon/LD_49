@@ -86,12 +86,14 @@ public class UIController : MonoBehaviour
                 UpdateLandmarkIndicator(rescuePointAirfield, arrowRescuePoint);
 
 
-            GameObject person = hr.GetClosestPerson(currentCamera.transform.position).gameObject;
+            HouseController personHouse = hr.GetClosestPerson(currentCamera.transform.position);
+            GameObject person;
+            if (personHouse != null)
+                person = personHouse.gameObject;
+            else
+                person = null;
 
             UpdateLandmarkIndicator(person, arrowPerson);
-
-            person = null;
-            
         }
     }
 
