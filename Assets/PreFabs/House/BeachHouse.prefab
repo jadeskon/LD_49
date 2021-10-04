@@ -53,7 +53,6 @@ MonoBehaviour:
   housePlaceHolder: {fileID: 1902820782715748186}
   personePrefabList:
   - {fileID: 4292528991688808464, guid: b0fb589df10fa394d8886c6b4d5f7b2f, type: 3}
-  - {fileID: 4292528991688808464, guid: 4ed15a31d8c20114ab112f9433de537b, type: 3}
   spawnPos: {fileID: 5932198475874364722}
   eventChanel: {fileID: 11400000, guid: 9d902c7828b1a334986b8b803fe37660, type: 2}
 --- !u!65 &8057014889438362100
