@@ -29,6 +29,7 @@ public class GameLogic
         vulcanController = owner.GetVulcanController();
 
         playState = new PlayState(this);
+        uiController.SetHR(playState.GetHR());
         gameOverState = new GameOverState(uiController, gameEventChanel);
 
 		inputController.OnMenu += InputController_OnMenu;

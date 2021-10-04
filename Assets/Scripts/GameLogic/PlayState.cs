@@ -46,6 +46,11 @@ public class PlayState
         SetUpGame();
     }
 
+    public HumanResources GetHR()
+    {
+        return hr;
+    }
+
     public void UpdatePlaystate()
     {
         hr.UpdateHR();
