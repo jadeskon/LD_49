@@ -10,6 +10,7 @@ public class Sacrificezone : MonoBehaviour
 		var player = collider.GetComponent<PlayerCharakterController>();
 		if (player != null)
         {
+			eventSystem.InfoPopupTrigger("Sacrifize to the Mounten GOD!!! (by pressing Space)");
 			eventSystem.SacrifizeZoneTrigger(true);
         }
 	}
@@ -19,6 +20,7 @@ public class Sacrificezone : MonoBehaviour
 		var player = collider.GetComponent<PlayerCharakterController>();
 		if (player != null)
 		{
+			eventSystem.InfoPopupTrigger("");
 			eventSystem.SacrifizeZoneTrigger(false);
 		}
 	}

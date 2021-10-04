@@ -21,6 +21,7 @@ public class UIController : MonoBehaviour
     public Image arrowRescuePoint;
     public Image arrowPerson;
 
+    public GameplayEventSystem gameEventChanel;
 
     // Privates
     private Camera currentCamera;
@@ -39,6 +40,8 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameEventChanel.infoPopupTriggerEvent += Info;
+
         ingameScreen.SetActive(true);
         pauseScreen.SetActive(false);
         gameOverScreen.SetActive(false);

@@ -489,6 +489,7 @@ MonoBehaviour:
   arrowVulcan: {fileID: 936413330347241887}
   arrowRescuePoint: {fileID: 7696357769851489371}
   arrowPerson: {fileID: 4436377343439022525}
+  gameEventChanel: {fileID: 11400000, guid: 9d902c7828b1a334986b8b803fe37660, type: 2}
 --- !u!1 &936413329159221214
 GameObject:
   m_ObjectHideFlags: 0

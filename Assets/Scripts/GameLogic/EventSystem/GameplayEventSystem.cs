@@ -50,4 +50,13 @@ public class GameplayEventSystem : ScriptableObject
             saveZoneTriggerEvent(saveZone);
         }
     }
+
+    public event Action<string> infoPopupTriggerEvent;
+    public void InfoPopupTrigger(string textToDisplay)
+    {
+        if (infoPopupTriggerEvent != null)
+        {
+            infoPopupTriggerEvent(textToDisplay);
+        }
+    }
 }
